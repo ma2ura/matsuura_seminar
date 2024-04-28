@@ -2,8 +2,6 @@
 
 ## プレゼミとは？
 
-
-
 ```{r setup}
 #| echo: false
 library(ggplot2)

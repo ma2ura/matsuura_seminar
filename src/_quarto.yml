@@ -4,11 +4,19 @@ project:
 
 website:
   title: "松浦プレゼミのウェブサイト"
+  navbar:
+    left:
+      - href: index.html
+        text: Home
+      - href: presemi2024.qmd
+        text: プレゼミ
 
 format:
   html:
     theme: pulse
     html-math-method: katex
+
+
 
 code-block-bg: "#F6F6F6"
 mainfont: "Hiragino Mincho ProN"
