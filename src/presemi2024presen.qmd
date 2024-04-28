@@ -1,3 +1,46 @@
+---
+title: |
+  <b>プレゼミ2024</b> </br>
+  <span style="color: #282A36; ">スライド</span>
+author: "松浦総一"
+format:
+  revealjs:
+    theme: ["default", "dracula.scss"]
+    transition: convex
+    slide-number: true
+    chalkboard: true
+    df_print: paged
+# highlight-style: "dracula"
+highlight-style: github
+
+code-block-bg: "#F6F6F6"
+# mainfont: "Hiragino Mincho ProN"
+mainfont: "Noto Sans CJK JP"
+
+execute:
+  echo : TRUE
+  message : FALSE
+  warning: FALSE
+  error: FALSE
+  fig-width: 10
+  fig-height: 6
+
+lang: "ja"
+# server: shiny
+monofontoptions:
+  - Scale = .5
+
+# Set default options for every bookpage that may or may not include webR.
+webr:
+  # show-startup-message: false    # Disable displaying status of webR initialization
+  packages: ['ggplot2', 'ggthemes','dplyr'] # Install R packages on document open
+
+# Attach webR extension for the project
+filters:
+  - webr
+---
+---
+
 # 2024年度 松浦プレゼミ
 
 ## プレゼミとは？
@@ -38,9 +81,9 @@ mystyle <- list (#  ggplotのテーマ
 
 Rを使う理由を、メリットとデメリットを比較しながら以下で説明します。
 
-:::{.column-margin}
+<!-- :::{.column-margin}
 データ分析のツールとして大学で使うことが多いのはMS Excelですが，MS Excelは表計算ソフトウェアであり，統計分析を行うこともできますが，データ分析界ではほとんど使われません。データアナリストが利用しているプログラミング言語として主要なものは，**Python**(パイソン)，**Julia**(ジュリア)，そして**R**(アール)です。
-:::
+::: -->
 
 :::{layout-ncol=2}
 
@@ -105,10 +148,10 @@ Rを使う理由を、メリットとデメリットを比較しながら以下�
 
 Rユーザーが使うことが多いRstudioを開発したPosit社が提供する、R Markdownをさらに進化させたQuartoを使うメリットは以下の通りです。
 
-:::{.column-margin}
+<!-- :::{.column-margin}
 MS Wordのように、書いた文章がそのまま印刷されるようなWYSIWYG(What You See Is What You Get)なワープロソフトとは異なり、特定の記法にしたがって書かれた文章をコンピューターで処理することで印刷用の文書に変換するWYSIWYM(What You See Is What You Mean)な文書処理システムを**マークアップ言語**といいます。Markdownが代表的なマークアップ言語で、そこにRを組み込んだR Markdownが広く利用されています。そのR Markdownをさらに進化させて、文書内でRやPython, Juliaなどのコードを実行できるようにしたのがQuartoです。
 マークアップ言語はWYSIWYM(What You See Is What You Mean)といい、コンパイルして完成品を確認するまで、どのように表示されるのかは分かりませんが、記法に従って書けば、最終的にはきれいなレポートができあがります。
-:::
+::: -->
 
 :::{layout-ncol=2}
 
@@ -191,9 +234,9 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 
 またExcelでグラフを作成しようとすると、メニューからグラフを選び、グラフの元となるデータを選択しといったように、メニューを何度もクリックすることになる。その結果、1週間後に同じグラフを作ろうと思っても、どうやって作ったのか思い出せなかったり、ちょっとデータを追加して新しいグラフを作ろうとすると、またいろんなところをポチポチする必要があり、再現可能性が低い。 -->
 
-## Rでどんなことができる？
+# Rでどんなことができる？
 
-### 1. 楽にデータ操作ができる
+## 1. 楽にデータ操作ができる
 
 Excelでは扱えないかなり大きなデータでも簡単にデータ操作ができます。
 たとえば、データ分析の練習用データとして有名な`iris`データをいろいろ操作してみましょう。
@@ -203,6 +246,9 @@ Excelでは扱えないかなり大きなデータでも簡単にデータ操作
 head(iris) # 最初の6行だけ
 ```
 
+
+---
+
 このように、`Sepal.Length`、`Sepal.Width`、`Petal.Length`、`Petal.Width`、`Species`という5つの項目が入っていることが分かります。Sepalは花びらで、Petalはがく片です。まず花びらの長さ`Sepal.Length`の平均を求めてみましょう。平均を返す関数は`mean()`です。
 
 ```{r sepal_length}
@@ -210,6 +256,9 @@ mean(iris$Sepal.Length)
 ```
 
 あやめの花びらの長さの平均は、`r mean(iris$Sepal.Length)`であることが分かりました。簡単ですね。
+
+---
+
 では次に，あやめの花びらの長さの**標準偏差**を求めてみましょう。標準偏差を返す関数は`sd()`です。
 下のボックスの緑の三角ボタンを押すと，Rコードが実行され，下に結果が表示されます。
 `sd()`で標準偏差，`max()`で最大値，`min()`で最小値，`median()`で中央値を求めることができるので，`sd`のところを書き換えて実行し，結果を確認してみてください。
@@ -217,6 +266,7 @@ mean(iris$Sepal.Length)
 sd(iris$Sepal.Length)
 ```
 
+---
 
 次に、あやめの種類を表す`Species`にはどんな種類があるのか見てみましょう。
 `Species`に入っている種類を確認するには、`table()`関数を使ってみます。
@@ -229,7 +279,7 @@ table(iris$Species)
 
  次に、この`iris`を使って、グラフを作ってみます。
 
-### 2. キレイなグラフが書ける。
+## 2. キレイなグラフが書ける。
 
 では次にグラフを作成してみます。
 最初に、花びらの長さのヒストグラムを書いてみます。
@@ -311,7 +361,7 @@ Rなら心配いりません。
 
 **Quarto**や**Rmarkdown**を使ってMarkdownでレポートを書けば、文章作成と図表を同じ場所で作成できます。
 ちなみに、このウェブサイトも**Quarto**を使って作成し、GitHubでウェブサイト公開してます。
-さらに[スライド資料](presemi2024presen.html)も簡単に作れます。
+さらに[スライド資料](pre_semi_presen.html)も簡単に作れます。
 
 例えば、先ほどから使っている`iris`データで、
 
