@@ -311,7 +311,7 @@ Rなら心配いりません。
 
 **Quarto**や**Rmarkdown**を使ってMarkdownでレポートを書けば、文章作成と図表を同じ場所で作成できます。
 ちなみに、このウェブサイトも**Quarto**を使って作成し、GitHubでウェブサイト公開してます。
-さらに[スライド資料](presemi2024presen.html)も簡単に作れます。
+さらに[<button type="button" class="btn btn-info">プレゼン資料</button>](presemi2024presen.html)も簡単に作れます。
 
 例えば、先ほどから使っている`iris`データで、
 
