@@ -96,6 +96,22 @@
     code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -580,7 +596,7 @@
   // Document level settings ----
 
   // Determine if we need to install R packages
-  globalThis.qwebrInstallRPackagesList = ['ggplot2', 'ggthemes', 'dplyr'];
+  globalThis.qwebrInstallRPackagesList = ['ggplot2', 'ggthemes', 'dplyr', 'gtsummary'];
 
   // Specify possible locations to search for the repository
   globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
@@ -602,7 +618,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"id":1,"code":"sd(iris$Sepal.Length)","options":{"fig-height":5,"read-only":"false","context":"interactive","results":"markup","classes":"","editor-max-height":"","editor-font-scale":1,"warning":"true","message":"true","fig-width":7,"output":"true","autorun":"false","label":"unnamed-chunk-1","dpi":72,"fig-cap":"","out-height":"","comment":"","out-width":"700px","editor-quick-suggestions":"false"}},{"id":2,"code":"table(iris$Species)","options":{"fig-height":5,"read-only":"false","context":"interactive","results":"markup","classes":"","editor-max-height":"","editor-font-scale":1,"warning":"true","message":"true","fig-width":7,"output":"true","autorun":"false","label":"unnamed-chunk-2","dpi":72,"fig-cap":"","out-height":"","comment":"","out-width":"700px","editor-quick-suggestions":"false"}},{"id":3,"code":"hist(iris$Sepal.Length)","options":{"fig-height":5,"read-only":"false","context":"interactive","results":"markup","classes":"","editor-max-height":"","editor-font-scale":1,"warning":"true","message":"true","fig-width":7,"output":"true","autorun":"false","label":"unnamed-chunk-3","dpi":72,"fig-cap":"","out-height":"","comment":"","out-width":"700px","editor-quick-suggestions":"false"}}];
+  globalThis.qwebrCellDetails = [{"code":"sd(iris$Sepal.Length)","options":{"message":"true","out-height":"","fig-width":7,"comment":"","editor-max-height":"","results":"markup","output":"true","read-only":"false","warning":"true","label":"unnamed-chunk-1","context":"interactive","editor-quick-suggestions":"false","classes":"","editor-font-scale":1,"dpi":72,"fig-height":5,"autorun":"false","out-width":"700px","fig-cap":""},"id":1},{"code":"table(iris$Species)","options":{"message":"true","out-height":"","fig-width":7,"comment":"","editor-max-height":"","results":"markup","output":"true","read-only":"false","warning":"true","label":"unnamed-chunk-2","context":"interactive","editor-quick-suggestions":"false","classes":"","editor-font-scale":1,"dpi":72,"fig-height":5,"autorun":"false","out-width":"700px","fig-cap":""},"id":2},{"code":"hist(iris$Sepal.Length)","options":{"message":"true","out-height":"","fig-width":7,"comment":"","editor-max-height":"","results":"markup","output":"true","read-only":"false","warning":"true","label":"unnamed-chunk-3","context":"interactive","editor-quick-suggestions":"false","classes":"","editor-font-scale":1,"dpi":72,"fig-height":5,"autorun":"false","out-width":"700px","fig-cap":""},"id":3}];
 
   </script>
   <script type="module">
@@ -1682,23 +1698,31 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 
 </section>
-<section class="slide level2">
-
-</section>
-<section>
-<section id="年度-松浦プレゼミ" class="title-slide slide level1 center">
-<h1>2024年度 松浦プレゼミ</h1>
-
-</section>
 <section id="プレゼミとは" class="slide level2">
 <h2>プレゼミとは？</h2>
-<p>令和6年度(2024年度)の松浦プレゼミでは、データに強い経営学部生となるため、データ分析のツールとしてもはやデファクトスタンダードとなっている(いいすぎ)プログラミング言語<strong>R</strong>を使って、様々な分析を行うためのスキルの修得を目指します。</p>
-<p>株価データや会計データ、POSデータといったデータベース以外にも、自分で集めたアンケートのデータや、Webスクレイピングで集めたデータなど、様々なデータを分析することができるスキルは、会計・ファイナンスだけでなく、組織、戦略、マーケティングと様々な分野で役に立つはずです。</p>
-<p>またRで分析した結果をレポートにまとめる際に有用なツールとして、<strong>Quarto</strong>を勉強します。 <strong>Quarto</strong>(クアルト)とは、Markdown記法で書かれた文章の中に、RだけでなくPythonなど他の言語も組み込める便利なツールです。</p>
+<p>令和6年度(2024年度)の松浦プレゼミでは、<strong>データに強い経営学部生</strong>となるため、データ分析のツールとしてプログラミング言語<strong>R</strong>を使った分析スキルの修得を目指します。</p>
+</section>
+<section id="分析スキル" class="slide level2">
+<h2>分析スキル</h2>
+<p>プレゼミでは、</p>
+<ul>
+<li>株価データ</li>
+<li>会計データ</li>
+<li>POSデータ</li>
+</ul>
+<p>といったデータベース以外にも、<strong>自分で集めたアンケートのデータ</strong>など、様々なデータを分析します。 数値データだけでなく、文書データを分析するスキルは会計・ファイナンスだけでなく、組織、戦略、マーケティングと様々な分野で役立ちます。</p>
+</section>
+<section id="資料作成" class="slide level2">
+<h2>資料作成</h2>
+<ul>
+<li>分析した結果をレポートにまとめることも重要です。</li>
+<li>分析の再現可能性を高めるための有用なツールとして、<strong>Quarto</strong>を使います。</li>
+<li><strong>Quarto</strong>(クアルト)とは、Markdown記法で書かれた文章の中に、RだけでなくPythonなど他の言語も組み込める便利なツールです。</li>
+</ul>
 </section>
 <section id="なぜrを使うのか" class="slide level2">
 <h2>なぜRを使うのか？</h2>
-<p>Rを使う理由を、メリットとデメリットを比較しながら以下で説明します。</p>
+<p>Rを使うメリットとデメリットをまとめました。</p>
 <!-- :::{.column-margin}
 データ分析のツールとして大学で使うことが多いのはMS Excelですが，MS Excelは表計算ソフトウェアであり，統計分析を行うこともできますが，データ分析界ではほとんど使われません。データアナリストが利用しているプログラミング言語として主要なものは，**Python**(パイソン)，**Julia**(ジュリア)，そして**R**(アール)です。
 ::: -->
@@ -1751,7 +1775,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="ms-excelだとダメなの" class="slide level2">
 <h2>MS Excelだとダメなの？</h2>
-<p>マイクロソフト社の表計算ソフト「Excel」は非常に便利だけれど，データ分析のツールとしては以下のようなデメリットがあります。</p>
+<p>表計算ソフト「Excel」を使うメリットとデメリット</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;display: flex;">
@@ -1800,7 +1824,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="なぜquartoを使うのか" class="slide level2">
 <h2>なぜQuartoを使うのか？</h2>
-<p>Rユーザーが使うことが多いRstudioを開発したPosit社が提供する、R Markdownをさらに進化させたQuartoを使うメリットは以下の通りです。</p>
+<p>Quartoを使うメリット・デメリット</p>
 <!-- :::{.column-margin}
 MS Wordのように、書いた文章がそのまま印刷されるようなWYSIWYG(What You See Is What You Get)なワープロソフトとは異なり、特定の記法にしたがって書かれた文章をコンピューターで処理することで印刷用の文書に変換するWYSIWYM(What You See Is What You Mean)な文書処理システムを**マークアップ言語**といいます。Markdownが代表的なマークアップ言語で、そこにRを組み込んだR Markdownが広く利用されています。そのR Markdownをさらに進化させて、文書内でRやPython, Juliaなどのコードを実行できるようにしたのがQuartoです。
 マークアップ言語はWYSIWYM(What You See Is What You Mean)といい、コンパイルして完成品を確認するまで、どのように表示されるのかは分かりませんが、記法に従って書けば、最終的にはきれいなレポートができあがります。
@@ -1821,7 +1845,6 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 <li>Markdown形式で記述できるので、簡単に論文・レポートの体裁を整えられる</li>
 <li>文章作成とデータ分析を同じ場所で行える</li>
 <li>文章中にRだけでなくPythonやJuliaを組み込める</li>
-<li>レポートの再現性を高めることができる</li>
 <li>グラフや表のデザインがきれい</li>
 <li><strong>なんかかっこいい</strong></li>
 <li><strong>無料</strong></li>
@@ -1854,7 +1877,7 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </section>
 <section id="なぜms-wordだとダメなの" class="slide level2">
 <h2>なぜMS Wordだとダメなの？</h2>
-<p>マイクロソフト社のワープロソフト「Word」は非常に便利でみんな使っているものだけれど、 データ分析の結果をレポートにまとめる際には以下のようなデメリットがあります。</p>
+<p>MS Wordを使うメリット・デメリット</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;display: flex;">
@@ -1924,7 +1947,7 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 ただ、データが大きくなるとExcelでは読み込めなくなる(Excelは縦に1,048,576行、横に16,384列が上限)が、RやPythonはPCのスペックに依存するものの、もっといける。
 
 またExcelでグラフを作成しようとすると、メニューからグラフを選び、グラフの元となるデータを選択しといったように、メニューを何度もクリックすることになる。その結果、1週間後に同じグラフを作ろうと思っても、どうやって作ったのか思い出せなかったり、ちょっとデータを追加して新しいグラフを作ろうとすると、またいろんなところをポチポチする必要があり、再現可能性が低い。 -->
-</section></section>
+</section>
 <section>
 <section id="rでどんなことができる" class="title-slide slide level1 center">
 <h1>Rでどんなことができる？</h1>
@@ -1932,7 +1955,15 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </section>
 <section id="楽にデータ操作ができる" class="slide level2">
 <h2>1. 楽にデータ操作ができる</h2>
-<p>Excelでは扱えないかなり大きなデータでも簡単にデータ操作ができます。 たとえば、データ分析の練習用データとして有名な<code>iris</code>データをいろいろ操作してみましょう。 <code>iris</code>は「あやめ」という花の花びらとがく片の長さと幅の4項目と3種類のあやめの分類名の1項目の合計5項目が150件収録されているデータベースです。Rには練習用に最初から入っているので、<code>head()</code>関数を使って<code>iris</code>の先頭の6行を読み込んでみます。</p>
+<ul>
+<li>Rはデータ分析のためのプログラミング言語で、データを扱うためのパッケージが豊富に揃っています。</li>
+<li>Excelでは扱えないかなり大きなデータでも簡単にデータ操作ができます。</li>
+<li>分析のプロセスをソースコードに残すことができるので、再現可能性が高いです。</li>
+</ul>
+</section>
+<section id="練習用データiris" class="slide level2">
+<h2>練習用データ<code>iris</code></h2>
+<p>データ分析の練習用データとして有名な<code>iris</code>データをいろいろ操作してみましょう。 <code>iris</code>は「あやめ」という花の花びらとがく片の長さと幅、あやめの分類名の合計5項目が150件収録されているデータベースです。<code>head()</code>関数を使って<code>iris</code>の先頭の6行を読み込んでみます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">head</span>(iris) <span class="co"># 最初の6行だけ</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1946,9 +1977,9 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<p>このように、<code>Sepal.Length</code>、<code>Sepal.Width</code>、<code>Petal.Length</code>、<code>Petal.Width</code>、<code>Species</code>という5つの項目が入っていることが分かります。Sepalは花びらで、Petalはがく片です。まず花びらの長さ<code>Sepal.Length</code>の平均を求めてみましょう。平均を返す関数は<code>mean()</code>です。</p>
+<section id="平均を計算する" class="slide level2">
+<h2>平均を計算する。</h2>
+<p><code>Sepal.Length</code>、<code>Sepal.Width</code>、<code>Petal.Length</code>、<code>Petal.Width</code>、<code>Species</code>という5つの項目が入っていることが分かります。Sepalは花びらで、Petalはがく片です。まず花びらの長さ<code>Sepal.Length</code>の平均を求めてみましょう。平均を返す関数は<code>mean()</code>です。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1959,7 +1990,7 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </section>
 <section class="slide level2">
 
-<p>では次に，あやめの花びらの長さの<strong>標準偏差</strong>を求めてみましょう。標準偏差を返す関数は<code>sd()</code>です。 下のボックスの緑の三角ボタンを押すと，Rコードが実行され，下に結果が表示されます。 <code>sd()</code>で標準偏差，<code>max()</code>で最大値，<code>min()</code>で最小値，<code>median()</code>で中央値を求めることができるので，<code>sd</code>のところを書き換えて実行し，結果を確認してみてください。</p>
+<p>次に，あやめの花びらの長さの<strong>標準偏差</strong>を求めてみましょう。 標準偏差を返す関数は<code>sd()</code>です。 下のボックスの緑の三角ボタンを押すと，Rコードが実行され，下に結果が表示されます。 <code>sd()</code>で標準偏差，<code>max()</code>で最大値，<code>min()</code>で最小値，<code>median()</code>で中央値を求めることができるので，<code>sd</code>のところを書き換えて実行し，結果を確認してみてください。</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
@@ -1973,83 +2004,81 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </section>
 <section id="キレイなグラフが書ける" class="slide level2">
 <h2>2. キレイなグラフが書ける。</h2>
-<p>では次にグラフを作成してみます。 最初に、花びらの長さのヒストグラムを書いてみます。 さくっとヒストグラムを作るには，基本関数の<code>hist()</code>を使います。 ここでは，<code>iris</code>データの<code>Sepal.Length</code>を使ってヒストグラムを作成してみましょう。</p>
+<p>次にRが得意とするグラフ作成を行います。 最初に、花びらの長さのヒストグラムを書いてみます。 さくっとヒストグラムを作るには，基本関数の<code>hist()</code>を使います。 <code>iris</code>データの<code>Sepal.Length</code>を使ってヒストグラムを作成してみましょう。</p>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Rはグラフ作成が得意なプログラミング言語です。 その機能を最大限活用するために，非常に簡単かつ分かりやすく美しいグラフを作成できる<code>ggplot2</code>パッケージを導入します。</p>
+</section>
+<section id="もっとキレイなグラフを書く" class="slide level2">
+<h2>もっとキレイなグラフを書く。</h2>
+<p>非常に簡単かつ分かりやすく美しいグラフを作成できる<code>ggplot2</code>パッケージを使ってグラフを作成します。<code>library(ggplot2)</code>を実行して、<code>ggplot2</code>パッケージを読み込みます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># install.packages("ggplot2") # 1回だけ実行</span></span>
-<span id="cb5-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(Sepal.Length) <span class="sc">+</span></span>
-<span id="cb5-4"><a></a> <span class="fu">geom_histogram</span>()</span>
-<span id="cb5-5"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/graph_hist_sepal-1.png" width="960"></p>
-</figure>
+<span id="cb5-2"><a></a><span class="fu">library</span>(ggplot2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>ヒストグラムの階級幅を変更したり、棒の数を変更するには、<code>geom_histogram()</code>の中で指定します。 例えば、階級幅を<span class="math inline">\(0.5\)</span>でヒストグラムを作る場合は、<code>binwidth = 0.5</code>のように指定します。</p>
+</section>
+<section class="slide level2">
+
+<p>次に、<code>ggplot2</code>を使って、花びらの長さのヒストグラムを書いてみます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(Sepal.Length) <span class="sc">+</span></span>
-<span id="cb6-2"><a></a> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span>
-<span id="cb6-3"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/graph_hist_sepal_bin30-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(Sepal.Length) <span class="co">#データと変数を指定</span></span>
+<span id="cb6-2"><a></a>g <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="co"># ヒストグラム</span></span>
+<span id="cb6-3"><a></a><span class="fu">print</span>(g) <span class="co"># グラフを表示</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-<p>グラフが黒くて見づらいので、デザインをいじってみます。 <code>geom_histogram()</code>関数の中で、線を黒、中を薄青色に指定します。</p>
+<img data-src="presemi2024presen_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="グラフをカスタマイズする" class="slide level2">
+<h2>グラフをカスタマイズする。</h2>
+<p>ヒストグラムの階級幅を変更したり、棒の数を変更するには、<code>geom_histogram()</code>の中で指定します。 例えば、階級幅を<span class="math inline">0.5</span>でヒストグラムを作る場合は、<code>binwidth = 0.5</code>のように指定します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(Sepal.Length) <span class="sc">+</span></span>
-<span id="cb7-2"><a></a> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"lightblue"</span>,<span class="at">binwidth =</span> .<span class="dv">5</span>)</span>
+<span id="cb7-2"><a></a> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span>
 <span id="cb7-3"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/graph_hist_sepal_color-1.png" width="960"></p>
-</figure>
+
 </div>
+<img data-src="presemi2024presen_files/figure-revealjs/graph_hist_sepal_bin30-1.png" width="960" class="r-stretch"></section>
+<section id="グラフのデザインを変更する" class="slide level2">
+<h2>グラフのデザインを変更する。</h2>
+<p>グラフが黒くて見づらいので、デザインをいじってみます。 <code>geom_histogram()</code>関数の中で、線を黒、中を薄青色に指定します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(Sepal.Length) <span class="sc">+</span></span>
+<span id="cb8-2"><a></a> <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"lightblue"</span>,<span class="at">binwidth =</span> .<span class="dv">5</span>)</span>
+<span id="cb8-3"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
+<img data-src="presemi2024presen_files/figure-revealjs/graph_hist_sepal_color-1.png" width="960" class="r-stretch"></section>
+<section id="グラフのテーマを変える" class="slide level2">
+<h2>グラフのテーマを変える。</h2>
 <p>背景が地味なので、グラフを雑誌Economist風にしてみます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>g <span class="sc">+</span> <span class="fu">theme_economist_white</span>() <span class="sc">+</span> <span class="fu">scale_colour_economist</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/hist_economist-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>g <span class="sc">+</span> <span class="fu">theme_economist_white</span>() <span class="sc">+</span> <span class="fu">scale_colour_economist</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-<p>次は花びらの長さと幅の散布図を書いてみます。 <code>ggplot2</code>で散布図を書くためには、<code>aes()</code>で<span class="math inline">\(x\)</span>軸と<span class="math inline">\(y\)</span>軸を指定し、<code>geom_point()</code>で散布図を指定する。</p>
+<img data-src="presemi2024presen_files/figure-revealjs/hist_economist-1.png" width="960" class="r-stretch"></section>
+<section id="変数の散布図を書く" class="slide level2">
+<h2>2変数の散布図を書く。</h2>
+<p>次は花びらの長さと幅の散布図を書いてみます。 <code>ggplot2</code>で散布図を書くためには、<code>aes()</code>で<span class="math inline">x</span>軸と<span class="math inline">y</span>軸を指定し、<code>geom_point()</code>で散布図を指定する。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width) <span class="sc">+</span></span>
-<span id="cb9-2"><a></a> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_economist</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/graph_sepal-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_economist</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
+<img data-src="presemi2024presen_files/figure-revealjs/graph_sepal-1.png" width="960" class="r-stretch"></section>
+<section id="色分けを簡単" class="slide level2">
+<h2>色分けを簡単</h2>
 <p>カテゴリーを表す変数を<code>group</code>と<code>colour</code>で指定すると、カテゴリーごとにグループ化して、色分けもしてくれます。ここでは花の種類を表す変数である<code>Species</code>ごとに色分けしてみます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="co"># データセットirisを指定</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="co"># x軸 花びらの幅</span></span>
-<span id="cb10-3"><a></a>      <span class="at">y =</span> Sepal.Width, <span class="co"># y軸　花びらの幅</span></span>
-<span id="cb10-4"><a></a>      <span class="at">color =</span> Species <span class="co"># あやめの種類ごとに色分け</span></span>
-<span id="cb10-5"><a></a>      ) <span class="sc">+</span></span>
-<span id="cb10-6"><a></a>      <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># 散布図を指定</span></span>
-<span id="cb10-7"><a></a>      <span class="fu">theme_economist</span>() <span class="co"># テーマをEconomistに</span></span>
-<span id="cb10-8"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(iris) <span class="sc">+</span> <span class="co"># データセットirisを指定</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="co"># x軸 花びらの幅</span></span>
+<span id="cb11-3"><a></a>      <span class="at">y =</span> Sepal.Width, <span class="co"># y軸　花びらの幅</span></span>
+<span id="cb11-4"><a></a>      <span class="at">color =</span> Species <span class="co"># あやめの種類ごとに色分け</span></span>
+<span id="cb11-5"><a></a>      ) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>      <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># 散布図を指定</span></span>
+<span id="cb11-7"><a></a>      <span class="fu">theme_economist</span>() <span class="co"># テーマをEconomistに</span></span>
+<span id="cb11-8"><a></a><span class="fu">print</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="色分けを簡単-output" class="slide level2 output-location-slide"><h2>色分けを簡単</h2><div class="cell output-location-slide">
 <div class="cell-output-display">
 <div>
 <figure>
@@ -2057,35 +2086,71 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </figure>
 </div>
 </div>
-</div>
+</div></section><section id="インタラクティブなグラフも簡単" class="slide level2">
+<h2>インタラクティブなグラフも簡単</h2>
 <p>操作できるグラフも作れます。 <code>plotly</code>パッケージを使えば簡単です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(plotly)</span>
-<span id="cb11-2"><a></a><span class="fu">ggplotly</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(plotly)</span>
+<span id="cb12-2"><a></a><span class="fu">ggplotly</span>(g)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="インタラクティブなグラフも簡単-output" class="slide level2 output-location-slide"><h2>インタラクティブなグラフも簡単</h2><div class="cell output-location-slide">
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-86bcf9bacbc7d57db159" style="width:960px;height:576px;"></div>
-<script type="application/json" data-for="htmlwidget-86bcf9bacbc7d57db159">{"x":{"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[3.5,3,3.2000000000000002,3.1000000000000001,3.6000000000000001,3.8999999999999999,3.3999999999999999,3.3999999999999999,2.8999999999999999,3.1000000000000001,3.7000000000000002,3.3999999999999999,3,3,4,4.4000000000000004,3.8999999999999999,3.5,3.7999999999999998,3.7999999999999998,3.3999999999999999,3.7000000000000002,3.6000000000000001,3.2999999999999998,3.3999999999999999,3,3.3999999999999999,3.5,3.3999999999999999,3.2000000000000002,3.1000000000000001,3.3999999999999999,4.0999999999999996,4.2000000000000002,3.1000000000000001,3.2000000000000002,3.5,3.6000000000000001,3,3.3999999999999999,3.5,2.2999999999999998,3.2000000000000002,3.5,3.7999999999999998,3,3.7999999999999998,3.2000000000000002,3.7000000000000002,3.2999999999999998],"text":["Sepal.Length: 5.1<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 4.7<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.9<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 2.9<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 4.3<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.8<br />Sepal.Width: 4.0<br />Species: setosa","Sepal.Length: 5.7<br />Sepal.Width: 4.4<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.9<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.7<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.3<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.7<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 4.1<br />Species: setosa","Sepal.Length: 5.5<br />Sepal.Width: 4.2<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.5<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.5<br />Sepal.Width: 2.3<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.3<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.3<br />Species: setosa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"setosa","legendgroup":"setosa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[3.2000000000000002,3.2000000000000002,3.1000000000000001,2.2999999999999998,2.7999999999999998,2.7999999999999998,3.2999999999999998,2.3999999999999999,2.8999999999999999,2.7000000000000002,2,3,2.2000000000000002,2.8999999999999999,2.8999999999999999,3.1000000000000001,3,2.7000000000000002,2.2000000000000002,2.5,3.2000000000000002,2.7999999999999998,2.5,2.7999999999999998,2.8999999999999999,3,2.7999999999999998,3,2.8999999999999999,2.6000000000000001,2.3999999999999999,2.3999999999999999,2.7000000000000002,2.7000000000000002,3,3.3999999999999999,3.1000000000000001,2.2999999999999998,3,2.5,2.6000000000000001,3,2.6000000000000001,2.2999999999999998,2.7000000000000002,3,2.8999999999999999,2.8999999999999999,2.5,2.7999999999999998],"text":["Sepal.Length: 7.0<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.4<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 6.5<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 3.3<br />Species: versicolor","Sepal.Length: 4.9<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 6.6<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.2<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.0<br />Sepal.Width: 2.0<br />Species: versicolor","Sepal.Length: 5.9<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.2<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 6.2<br />Sepal.Width: 2.2<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.9<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.4<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.8<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.4<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 3.4<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 5.0<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.2<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.1<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.8<br />Species: versicolor"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"versicolor","legendgroup":"versicolor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[3.2999999999999998,2.7000000000000002,3,2.8999999999999999,3,3,2.5,2.8999999999999999,2.5,3.6000000000000001,3.2000000000000002,2.7000000000000002,3,2.5,2.7999999999999998,3.2000000000000002,3,3.7999999999999998,2.6000000000000001,2.2000000000000002,3.2000000000000002,2.7999999999999998,2.7999999999999998,2.7000000000000002,3.2999999999999998,3.2000000000000002,2.7999999999999998,3,2.7999999999999998,3,2.7999999999999998,3.7999999999999998,2.7999999999999998,2.7999999999999998,2.6000000000000001,3,3.3999999999999999,3.1000000000000001,3,3.1000000000000001,3.1000000000000001,3.1000000000000001,2.7000000000000002,3.2000000000000002,3.2999999999999998,3,2.5,3,3.3999999999999999,3],"text":["Sepal.Length: 6.3<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 7.1<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.9<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.6<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 4.9<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 7.3<br />Sepal.Width: 2.9<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.6<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.8<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 5.7<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 3.8<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 2.6<br />Species: virginica","Sepal.Length: 6.0<br />Sepal.Width: 2.2<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 5.6<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.2<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.1<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.9<br />Sepal.Width: 3.8<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.1<br />Sepal.Width: 2.6<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 3.4<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.0<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.8<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.2<br />Sepal.Width: 3.4<br />Species: virginica","Sepal.Length: 5.9<br />Sepal.Width: 3.0<br />Species: virginica"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"virginica","legendgroup":"virginica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":31.940224159402241,"r":13.283520132835205,"b":38.522208385222086,"l":43.171440431714416},"plot_bgcolor":"transparent","paper_bgcolor":"rgba(213,228,235,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4.1200000000000001,8.0800000000000001],"tickmode":"array","ticktext":["5","6","7","8"],"tickvals":[5,6,7,8],"categoryorder":"array","categoryarray":["5","6","7","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":-6.6417600664176026,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Sepal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8799999999999999,4.5200000000000005],"tickmode":"array","ticktext":["2.0","2.5","3.0","3.5","4.0","4.5"],"tickvals":[2,2.5,3,3.5,4,4.5],"categoryorder":"array","categoryarray":["2.0","2.5","3.0","3.5","4.0","4.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":-6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":1.16230801162308,"zeroline":false,"anchor":"x","title":{"text":"Sepal.Width","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"transparent","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":18.264840182648406},"title":{"text":"Species","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"110b96a0bf0":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"110b96a0bf0","visdat":{"110b96a0bf0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-60a08551954aca9c5654" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-60a08551954aca9c5654">{"x":{"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[3.5,3,3.2000000000000002,3.1000000000000001,3.6000000000000001,3.8999999999999999,3.3999999999999999,3.3999999999999999,2.8999999999999999,3.1000000000000001,3.7000000000000002,3.3999999999999999,3,3,4,4.4000000000000004,3.8999999999999999,3.5,3.7999999999999998,3.7999999999999998,3.3999999999999999,3.7000000000000002,3.6000000000000001,3.2999999999999998,3.3999999999999999,3,3.3999999999999999,3.5,3.3999999999999999,3.2000000000000002,3.1000000000000001,3.3999999999999999,4.0999999999999996,4.2000000000000002,3.1000000000000001,3.2000000000000002,3.5,3.6000000000000001,3,3.3999999999999999,3.5,2.2999999999999998,3.2000000000000002,3.5,3.7999999999999998,3,3.7999999999999998,3.2000000000000002,3.7000000000000002,3.2999999999999998],"text":["Sepal.Length: 5.1<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 4.7<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.9<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 2.9<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 4.3<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.8<br />Sepal.Width: 4.0<br />Species: setosa","Sepal.Length: 5.7<br />Sepal.Width: 4.4<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.9<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.7<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.3<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 4.7<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.4<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.2<br />Sepal.Width: 4.1<br />Species: setosa","Sepal.Length: 5.5<br />Sepal.Width: 4.2<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.1<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.5<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.9<br />Sepal.Width: 3.6<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.4<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 4.5<br />Sepal.Width: 2.3<br />Species: setosa","Sepal.Length: 4.4<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.5<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 4.8<br />Sepal.Width: 3.0<br />Species: setosa","Sepal.Length: 5.1<br />Sepal.Width: 3.8<br />Species: setosa","Sepal.Length: 4.6<br />Sepal.Width: 3.2<br />Species: setosa","Sepal.Length: 5.3<br />Sepal.Width: 3.7<br />Species: setosa","Sepal.Length: 5.0<br />Sepal.Width: 3.3<br />Species: setosa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"setosa","legendgroup":"setosa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[3.2000000000000002,3.2000000000000002,3.1000000000000001,2.2999999999999998,2.7999999999999998,2.7999999999999998,3.2999999999999998,2.3999999999999999,2.8999999999999999,2.7000000000000002,2,3,2.2000000000000002,2.8999999999999999,2.8999999999999999,3.1000000000000001,3,2.7000000000000002,2.2000000000000002,2.5,3.2000000000000002,2.7999999999999998,2.5,2.7999999999999998,2.8999999999999999,3,2.7999999999999998,3,2.8999999999999999,2.6000000000000001,2.3999999999999999,2.3999999999999999,2.7000000000000002,2.7000000000000002,3,3.3999999999999999,3.1000000000000001,2.2999999999999998,3,2.5,2.6000000000000001,3,2.6000000000000001,2.2999999999999998,2.7000000000000002,3,2.8999999999999999,2.8999999999999999,2.5,2.7999999999999998],"text":["Sepal.Length: 7.0<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.4<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 6.5<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 3.3<br />Species: versicolor","Sepal.Length: 4.9<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 6.6<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.2<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.0<br />Sepal.Width: 2.0<br />Species: versicolor","Sepal.Length: 5.9<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.2<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 6.2<br />Sepal.Width: 2.2<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.9<br />Sepal.Width: 3.2<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.4<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.8<br />Sepal.Width: 2.8<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.4<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.4<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 6.0<br />Sepal.Width: 3.4<br />Species: versicolor","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: versicolor","Sepal.Length: 6.3<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.5<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 6.1<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.8<br />Sepal.Width: 2.6<br />Species: versicolor","Sepal.Length: 5.0<br />Sepal.Width: 2.3<br />Species: versicolor","Sepal.Length: 5.6<br />Sepal.Width: 2.7<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 3.0<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 6.2<br />Sepal.Width: 2.9<br />Species: versicolor","Sepal.Length: 5.1<br />Sepal.Width: 2.5<br />Species: versicolor","Sepal.Length: 5.7<br />Sepal.Width: 2.8<br />Species: versicolor"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"versicolor","legendgroup":"versicolor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[3.2999999999999998,2.7000000000000002,3,2.8999999999999999,3,3,2.5,2.8999999999999999,2.5,3.6000000000000001,3.2000000000000002,2.7000000000000002,3,2.5,2.7999999999999998,3.2000000000000002,3,3.7999999999999998,2.6000000000000001,2.2000000000000002,3.2000000000000002,2.7999999999999998,2.7999999999999998,2.7000000000000002,3.2999999999999998,3.2000000000000002,2.7999999999999998,3,2.7999999999999998,3,2.7999999999999998,3.7999999999999998,2.7999999999999998,2.7999999999999998,2.6000000000000001,3,3.3999999999999999,3.1000000000000001,3,3.1000000000000001,3.1000000000000001,3.1000000000000001,2.7000000000000002,3.2000000000000002,3.2999999999999998,3,2.5,3,3.3999999999999999,3],"text":["Sepal.Length: 6.3<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 7.1<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.9<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.6<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 4.9<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 7.3<br />Sepal.Width: 2.9<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.6<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.8<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 5.7<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 3.8<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 2.6<br />Species: virginica","Sepal.Length: 6.0<br />Sepal.Width: 2.2<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 5.6<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.2<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.1<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.2<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 7.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 7.9<br />Sepal.Width: 3.8<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.8<br />Species: virginica","Sepal.Length: 6.1<br />Sepal.Width: 2.6<br />Species: virginica","Sepal.Length: 7.7<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 3.4<br />Species: virginica","Sepal.Length: 6.4<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.0<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 6.9<br />Sepal.Width: 3.1<br />Species: virginica","Sepal.Length: 5.8<br />Sepal.Width: 2.7<br />Species: virginica","Sepal.Length: 6.8<br />Sepal.Width: 3.2<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.3<br />Species: virginica","Sepal.Length: 6.7<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.3<br />Sepal.Width: 2.5<br />Species: virginica","Sepal.Length: 6.5<br />Sepal.Width: 3.0<br />Species: virginica","Sepal.Length: 6.2<br />Sepal.Width: 3.4<br />Species: virginica","Sepal.Length: 5.9<br />Sepal.Width: 3.0<br />Species: virginica"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"virginica","legendgroup":"virginica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":31.940224159402241,"r":13.283520132835205,"b":38.522208385222086,"l":43.171440431714416},"plot_bgcolor":"transparent","paper_bgcolor":"rgba(213,228,235,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4.1200000000000001,8.0800000000000001],"tickmode":"array","ticktext":["5","6","7","8"],"tickvals":[5,6,7,8],"categoryorder":"array","categoryarray":["5","6","7","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":-6.6417600664176026,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.5313408053134081,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Sepal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.8799999999999999,4.5200000000000005],"tickmode":"array","ticktext":["2.0","2.5","3.0","3.5","4.0","4.5"],"tickvals":[2,2.5,3,3.5,4,4.5],"categoryorder":"array","categoryarray":["2.0","2.5","3.0","3.5","4.0","4.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":-6.6417600664176026,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":1.16230801162308,"zeroline":false,"anchor":"x","title":{"text":"Sepal.Width","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"transparent","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":18.264840182648406},"title":{"text":"Species","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"152d5407278a4":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"152d5407278a4","visdat":{"152d5407278a4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
-</div>
-<h3 id="レポート論文が作れる">3. レポート・論文が作れる。</h3>
-<p>データを分析した結果を表や図としてレポートや論文に載せる場合、MS Excelで作成した図や表を、MS Wordにコピペしてませんか？ その場合、Wordで書いてたレポートの図表に少し修正を加えることになると、またExcelを開いて修正し、またコピペしたりしてませんか？ これはミスの元ですし、レポートを2週間後に読んだとして、その図表を作成したExcelがどこにあるのか、またどうやって作ったのか思い出せますか？ Rなら心配いりません。</p>
-<p><strong>Quarto</strong>や<strong>Rmarkdown</strong>を使ってMarkdownでレポートを書けば、文章作成と図表を同じ場所で作成できます。 ちなみに、このウェブサイトも<strong>Quarto</strong>を使って作成し、GitHubでウェブサイト公開してます。 さらに<a href="pre_semi_presen.html">スライド資料</a>も簡単に作れます。</p>
+</div></section><section id="レポート論文が作れる" class="slide level2">
+<h2>3. レポート・論文が作れる。</h2>
+<ul>
+<li>データを分析した結果を表や図としてレポートや論文に載せる場合、MS Excelで作成した図や表を、MS Wordにコピペしてませんか？</li>
+<li>その場合、Wordで書いてたレポートの図表に少し修正を加えることになると、またExcelを開いて修正し、またコピペしたりしてませんか？</li>
+<li>レポートを2週間後に読んだとして、その図表を作成したExcelがどこにあるのか、またどうやって作ったのか思い出せますか？</li>
+</ul>
+<p><strong>RとQuartoなら心配いりません。</strong></p>
+</section>
+<section id="quartoで資料作成" class="slide level2">
+<h2>Quartoで資料作成</h2>
+<ul>
+<li><strong>Quarto</strong>や<strong>Rmarkdown</strong>を使ってMarkdownでレポートを書けば、文章作成と図表を同じ場所で作成できます。</li>
+<li>このスライド資料も<strong>Quarto</strong>を使って作成し、GitHubで公開してます。</li>
+</ul>
+</section></section>
+<section>
+<section id="複雑な分析も簡単" class="title-slide slide level1 center">
+<h1>複雑な分析も簡単</h1>
+
+</section>
+<section id="複数の処理を実行" class="slide level2">
+<h2>複数の処理を実行</h2>
 <p>例えば、先ほどから使っている<code>iris</code>データで、</p>
 <ol type="1">
 <li>「あやめ」の種類ごとに、</li>
 <li>花びらの長さと幅の平均、中央値、標準偏差を計算し、</li>
 <li>それを表にする，</li>
 </ol>
-<p>という処理を行いたいとしましょう。 簡単です。Rならね。</p>
+<p>という処理を行いたいとしましょう。</p>
+</section>
+<section id="dplyrパッケージで実装" class="slide level2">
+<h2><code>dplyr</code>パッケージで実装</h2>
+<p>簡単です。Rならね。</p>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">ソースコード</a></li><li><a href="#tabset-1-2">結果</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> <span class="co"># あやめの種類ごとに</span></span>
-<span id="cb12-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>( <span class="co"># 以下の統計量を計算</span></span>
-<span id="cb12-4"><a></a>    花びらの長さの平均 <span class="ot">=</span> <span class="fu">mean</span>(Sepal.Length),</span>
-<span id="cb12-5"><a></a>    花びらの幅の平均 <span class="ot">=</span> <span class="fu">mean</span>(Sepal.Width),</span>
-<span id="cb12-6"><a></a>    花びらの標準偏差 <span class="ot">=</span> <span class="fu">sd</span>(Sepal.Width)</span>
-<span id="cb12-7"><a></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb12-8"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> <span class="co"># あやめの種類ごとに</span></span>
+<span id="cb13-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>( <span class="co"># 以下の統計量を計算</span></span>
+<span id="cb13-4"><a></a>    花びらの長さの平均 <span class="ot">=</span> <span class="fu">mean</span>(Sepal.Length),</span>
+<span id="cb13-5"><a></a>    花びらの幅の平均 <span class="ot">=</span> <span class="fu">mean</span>(Sepal.Width),</span>
+<span id="cb13-6"><a></a>    花びらの標準偏差 <span class="ot">=</span> <span class="fu">sd</span>(Sepal.Width)</span>
+<span id="cb13-7"><a></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
 <div class="cell-output-display">
 <table>
 <thead>
@@ -2119,38 +2184,55 @@ MS Wordのように、書いた文章がそのまま印刷されるようなWYSI
 </table>
 </div>
 </div>
-<p>たとえば、あやめのがく片の長さが長いほど、花びらが長くなるかどうかを分析しようと回帰分析を行いたいとします。 つまり以下のような回帰モデルを考えます（数式もこんなにキレイに書けます）。 <span class="math display">\[
+</div>
+</div>
+</div>
+</section>
+<section id="回帰分析も簡単" class="slide level2">
+<h2>回帰分析も簡単</h2>
+<p>たとえば、あやめのがく片の長さが長いほど、花びらが長くなるかどうかを分析しようと回帰分析を行いたいとします。 つまり以下のような回帰モデルを考えます（数式もこんなにキレイに書けます）。 <span class="math display">
 Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
-\]</span></p>
-<p>この回帰モデルを最小二乗法(Ordinary Least Square Methos)で推定した結果を表にするときも次のように書けばできます。</p>
+</span></p>
+</section>
+<section id="回帰分析も簡単-1" class="slide level2">
+<h2>回帰分析も簡単</h2>
+<p>この回帰モデルを最小二乗法で推定した結果を表にしてみます。</p>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">ソースコード</a></li><li><a href="#tabset-2-2">出力結果</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb13-2"><a></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Petal.Length, <span class="at">data =</span> iris)</span>
-<span id="cb13-3"><a></a><span class="fu">tbl_regression</span>(lm_fit,</span>
-<span id="cb13-4"><a></a>               <span class="at">type =</span> <span class="st">"html"</span>,</span>
-<span id="cb13-5"><a></a>               <span class="at">title =</span> <span class="st">"Regression Results"</span>,</span>
-<span id="cb13-6"><a></a>               <span class="at">exponentiate =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-7"><a></a>               <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>),</span>
-<span id="cb13-8"><a></a>               <span class="at">add_estimate_to_reference_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-9"><a></a>               <span class="at">bold_p =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb14-2"><a></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Petal.Length, <span class="at">data =</span> iris)</span>
+<span id="cb14-3"><a></a><span class="fu">tbl_regression</span>(lm_fit,</span>
+<span id="cb14-4"><a></a>               <span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb14-5"><a></a>               <span class="at">title =</span> <span class="st">"Regression Results"</span>,</span>
+<span id="cb14-6"><a></a>               <span class="at">exponentiate =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb14-7"><a></a>               <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>),</span>
+<span id="cb14-8"><a></a>               <span class="at">add_estimate_to_reference_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-9"><a></a>               <span class="at">bold_p =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
 <div class="cell-output-display">
-<div id="apzpmzjfhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#apzpmzjfhc table {
+<div id="jaagccvuoo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jaagccvuoo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#apzpmzjfhc thead, #apzpmzjfhc tbody, #apzpmzjfhc tfoot, #apzpmzjfhc tr, #apzpmzjfhc td, #apzpmzjfhc th {
+#jaagccvuoo thead, #jaagccvuoo tbody, #jaagccvuoo tfoot, #jaagccvuoo tr, #jaagccvuoo td, #jaagccvuoo th {
   border-style: none;
 }
 
-#apzpmzjfhc p {
+#jaagccvuoo p {
   margin: 0;
   padding: 0;
 }
 
-#apzpmzjfhc .gt_table {
+#jaagccvuoo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2176,12 +2258,12 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-left-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_caption {
+#jaagccvuoo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#apzpmzjfhc .gt_title {
+#jaagccvuoo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2193,7 +2275,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-bottom-width: 0;
 }
 
-#apzpmzjfhc .gt_subtitle {
+#jaagccvuoo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2205,7 +2287,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-top-width: 0;
 }
 
-#apzpmzjfhc .gt_heading {
+#jaagccvuoo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2217,13 +2299,13 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-right-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_bottom_border {
+#jaagccvuoo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_col_headings {
+#jaagccvuoo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2238,7 +2320,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-right-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_col_heading {
+#jaagccvuoo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2258,7 +2340,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   overflow-x: hidden;
 }
 
-#apzpmzjfhc .gt_column_spanner_outer {
+#jaagccvuoo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2270,15 +2352,15 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 4px;
 }
 
-#apzpmzjfhc .gt_column_spanner_outer:first-child {
+#jaagccvuoo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#apzpmzjfhc .gt_column_spanner_outer:last-child {
+#jaagccvuoo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#apzpmzjfhc .gt_column_spanner {
+#jaagccvuoo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2290,11 +2372,11 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   width: 100%;
 }
 
-#apzpmzjfhc .gt_spanner_row {
+#jaagccvuoo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#apzpmzjfhc .gt_group_heading {
+#jaagccvuoo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2320,7 +2402,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   text-align: left;
 }
 
-#apzpmzjfhc .gt_empty_group_heading {
+#jaagccvuoo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2335,15 +2417,15 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   vertical-align: middle;
 }
 
-#apzpmzjfhc .gt_from_md > :first-child {
+#jaagccvuoo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#apzpmzjfhc .gt_from_md > :last-child {
+#jaagccvuoo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#apzpmzjfhc .gt_row {
+#jaagccvuoo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2362,7 +2444,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   overflow-x: hidden;
 }
 
-#apzpmzjfhc .gt_stub {
+#jaagccvuoo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2375,7 +2457,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 5px;
 }
 
-#apzpmzjfhc .gt_stub_row_group {
+#jaagccvuoo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2389,15 +2471,15 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   vertical-align: top;
 }
 
-#apzpmzjfhc .gt_row_group_first td {
+#jaagccvuoo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#apzpmzjfhc .gt_row_group_first th {
+#jaagccvuoo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#apzpmzjfhc .gt_summary_row {
+#jaagccvuoo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2407,16 +2489,16 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 5px;
 }
 
-#apzpmzjfhc .gt_first_summary_row {
+#jaagccvuoo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_first_summary_row.thick {
+#jaagccvuoo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#apzpmzjfhc .gt_last_summary_row {
+#jaagccvuoo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2426,7 +2508,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-bottom-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_grand_summary_row {
+#jaagccvuoo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2436,7 +2518,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 5px;
 }
 
-#apzpmzjfhc .gt_first_grand_summary_row {
+#jaagccvuoo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2446,7 +2528,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-top-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_last_grand_summary_row_top {
+#jaagccvuoo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2456,11 +2538,11 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-bottom-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_striped {
+#jaagccvuoo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#apzpmzjfhc .gt_table_body {
+#jaagccvuoo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2469,7 +2551,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-bottom-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_footnotes {
+#jaagccvuoo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2483,7 +2565,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-right-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_footnote {
+#jaagccvuoo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2492,7 +2574,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 5px;
 }
 
-#apzpmzjfhc .gt_sourcenotes {
+#jaagccvuoo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2506,7 +2588,7 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   border-right-color: #D3D3D3;
 }
 
-#apzpmzjfhc .gt_sourcenote {
+#jaagccvuoo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2514,63 +2596,63 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   padding-right: 5px;
 }
 
-#apzpmzjfhc .gt_left {
+#jaagccvuoo .gt_left {
   text-align: left;
 }
 
-#apzpmzjfhc .gt_center {
+#jaagccvuoo .gt_center {
   text-align: center;
 }
 
-#apzpmzjfhc .gt_right {
+#jaagccvuoo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#apzpmzjfhc .gt_font_normal {
+#jaagccvuoo .gt_font_normal {
   font-weight: normal;
 }
 
-#apzpmzjfhc .gt_font_bold {
+#jaagccvuoo .gt_font_bold {
   font-weight: bold;
 }
 
-#apzpmzjfhc .gt_font_italic {
+#jaagccvuoo .gt_font_italic {
   font-style: italic;
 }
 
-#apzpmzjfhc .gt_super {
+#jaagccvuoo .gt_super {
   font-size: 65%;
 }
 
-#apzpmzjfhc .gt_footnote_marks {
+#jaagccvuoo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#apzpmzjfhc .gt_asterisk {
+#jaagccvuoo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#apzpmzjfhc .gt_indent_1 {
+#jaagccvuoo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#apzpmzjfhc .gt_indent_2 {
+#jaagccvuoo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#apzpmzjfhc .gt_indent_3 {
+#jaagccvuoo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#apzpmzjfhc .gt_indent_4 {
+#jaagccvuoo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#apzpmzjfhc .gt_indent_5 {
+#jaagccvuoo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2602,19 +2684,33 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="結果の作表も簡単" class="slide level2">
+<h2>結果の作表も簡単</h2>
 <p>他にもこんな感じにできます。</p>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">ソースコード</a></li><li><a href="#tabset-3-2">出力結果</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb14-2"><a></a><span class="fu">library</span>(broom)</span>
-<span id="cb14-3"><a></a>lm_fit <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a></a>  <span class="fu">kable</span>(</span>
-<span id="cb14-6"><a></a>      <span class="at">caption =</span> <span class="st">"Regression Results"</span>,</span>
-<span id="cb14-7"><a></a>      <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb14-8"><a></a>      <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-9"><a></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-10"><a></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-11"><a></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"#0073C2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb15-2"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb15-3"><a></a>lm_fit <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">kable</span>(</span>
+<span id="cb15-6"><a></a>      <span class="at">caption =</span> <span class="st">"Regression Results"</span>,</span>
+<span id="cb15-7"><a></a>      <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-8"><a></a>      <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-11"><a></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"#0073C2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
 <div class="cell-output-display">
 <table class="table" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Regression Results</caption>
@@ -2648,21 +2744,39 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
 
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="回帰直線も簡単" class="slide level2">
+<h2>回帰直線も簡単</h2>
 <p>あやめのがく片の長さと花びらが長さをグラフにし，そこに上で求めた回帰直線を引いてみます。</p>
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">ソースコード</a></li><li><a href="#tabset-4-2">出力結果</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a></a>  <span class="fu">theme_economist_white</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Petal.Length, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">theme_economist_white</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presemi2024presen_files/figure-revealjs/iris_regress_graph-1.png" width="960"></p>
+<p><img data-src="presemi2024presen_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>上記の結果から，がく片が1センチ長くなると，花びらの長さが約4.1ミリ長くなることがわかります。 このように、Rを使えば、データの操作から分析、結果の表や図の作成まで、一連の作業を一カ所で行うことができます。</p>
+</div>
+</div>
+</div>
+<!-- 上記の結果から，がく片が1センチ長くなると，花びらの長さが約4.1ミリ長くなることがわかります。 -->
+<p>このように、Rを使えば、データの操作から分析、結果の表や図の作成まで、一連の作業を一カ所で行うことができます。</p>
 </section>
 <section id="まとめ" class="slide level2">
 <h2>まとめ</h2>
@@ -2691,7 +2805,6 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
   <script src="site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="site_libs/revealjs/plugin/search/search.js"></script>
   <script src="site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -2859,27 +2972,9 @@ Sepal.Length = \alpha + \beta \times Petal.Length + \varepsilon
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom
