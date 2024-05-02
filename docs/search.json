@@ -278,5 +278,26 @@
     "title": "プレゼミ2024  スライド",
     "section": "インタラクティブなグラフも簡単",
     "text": "インタラクティブなグラフも簡単"
+  },
+  {
+    "objectID": "presemi2024presen.html",
+    "href": "presemi2024presen.html",
+    "title": "プレゼミ2024  スライド",
+    "section": "",
+    "text": "令和6年度(2024年度)の松浦プレゼミでは、データに強い経営学部生となるため、データ分析のツールとしてプログラミング言語Rを使った分析スキルの修得を目指します。"
+  },
+  {
+    "objectID": "presemi2024presen.html#色分けも簡単",
+    "href": "presemi2024presen.html#色分けも簡単",
+    "title": "プレゼミ2024  スライド",
+    "section": "色分けも簡単",
+    "text": "色分けも簡単\nカテゴリーを表す変数をgroupとcolourで指定すると、カテゴリーごとにグループ化して色分けもしてくれます。ここでは花の種類を表す変数であるSpeciesごとに色分けしてみます。\n\ng &lt;- ggplot(iris) + # データセットirisを指定\n  aes(x = Sepal.Length, # x軸 花びらの幅\n      y = Sepal.Width, # y軸　花びらの幅\n      color = Species # あやめの種類ごとに色分け\n      ) +\n      geom_point() + # 散布図を指定\n      theme_economist() # テーマをEconomistに\nprint(g)"
+  },
+  {
+    "objectID": "presemi2024presen.html#色分けも簡単-output",
+    "href": "presemi2024presen.html#色分けも簡単-output",
+    "title": "プレゼミ2024  スライド",
+    "section": "色分けも簡単",
+    "text": "色分けも簡単"
   }
 ]

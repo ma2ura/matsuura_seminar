@@ -40,7 +40,6 @@ webr:
 filters:
   - webr
 ---
----
 
 ## プレゼミとは？
 
@@ -364,7 +363,7 @@ ggplot(iris) + aes(x = Sepal.Length, y = Sepal.Width) +
 
 ## 色分けも簡単
 
-カテゴリーを表す変数を`group`と`colour`で指定すると、カテゴリーごとにグループ化して、色分けもしてくれます。ここでは花の種類を表す変数である`Species`ごとに色分けしてみます。
+カテゴリーを表す変数を`group`と`colour`で指定すると、カテゴリーごとにグループ化して色分けもしてくれます。ここでは花の種類を表す変数である`Species`ごとに色分けしてみます。
 
 ```{r graph_species}
 #| output-location: slide
