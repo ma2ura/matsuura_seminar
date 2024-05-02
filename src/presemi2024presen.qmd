@@ -565,7 +565,7 @@ ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
 ```{r}
 #| echo: FALSE
 #| fig-width: 5
-#| fig-height: 3 
+#| fig-height: 3
 ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
