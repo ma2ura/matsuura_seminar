@@ -10,7 +10,8 @@ website:
         text: Home
       - href: presemi2024.qmd
         text: プレゼミ
-
+      - href: presemi2024presen.html
+        text: プレゼン
 format:
   html:
     theme: simplex
