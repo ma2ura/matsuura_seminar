@@ -48,3 +48,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 src/.vdoc.r
+src/.DS_Store
+.DS_Store
