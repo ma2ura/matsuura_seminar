@@ -1,229 +1,387 @@
-/* HTTPSに変更 */
-@import url("https://fonts.googleapis.com/earlyaccess/notosansjapanese.css");
+/* =========================================
+   基本設定 (Variables & Reset)
+   ========================================= */
+:root {
+  --main-color: #8B0000; /* DarkRed */
+  --accent-color: #d3381c;
+  --text-color: #333;
+  --bg-color: #fdfdfd;
+  --nav-bg: #f4f4f4;
+  --nav-hover: #8B0000;
+  --font-base: 'Noto Sans JP', sans-serif;
+  --max-width: 1000px; /* コンテンツの最大幅 */
+}
 
 body {
-    font-family: 'Noto Sans Japanese', sans-serif;
-    font-weight: 200;
-    font-size: 100%; /* 120%だとスマホで大きすぎる場合があるため調整 */
-    color: #555;
-    margin: 0; /* ブラウザデフォルトの余白をリセット */
-    line-height: 1.6;
+  font-family: var(--font-base);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  margin: 0;
+  line-height: 1.8;
+  font-weight: 300;
 }
 
-/* 画像がコンテナからはみ出さないように設定 */
-img {
-    max-width: 100%;
-    height: auto;
+/* 共通コンテナ（幅制限と中央寄せ） */
+.inner-container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
-/* コンテナ設定：最大幅を指定し、画面が狭いときは100%にする */
-.container {
-    width: 978px;
-    max-width: 100%; 
-    margin: 0 auto;
-    padding: 0 10px; /* スマホで端がくっつかないようにパディング追加 */
-    box-sizing: border-box; /* パディングを含めた幅計算にする */
+a {
+  color: var(--main-color);
+  text-decoration: none;
+  transition: opacity 0.3s;
 }
+a:hover { opacity: 0.7; }
 
-/* グリッド共通設定 */
-.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12,
-.project, .project2, .project3, .project4, .project0, .logo, .grid4block {
-    float: left;
-    display: inline;
-    margin-left: 30px;
-}
-
-/* 各グリッド幅の設定 */
-.grid1 { width: 54px }
-.grid2 { width: 138px }
-.grid3 { width: 222px }
-.grid4 { width: 306px }
-.grid5 { width: 390px }
-.grid6 { width: 474px }
-.grid7 { width: 558px }
-.grid8 { width: 642px }
-.grid9 { width: 726px }
-.grid10 { width: 810px }
-.grid11 { width: 894px }
-.grid12 { width: 978px; margin-left: 0; } /* 全幅用に追加 */
-
-.first { margin-left: 0; clear: left; }
-
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
-
-/* タイトル周り */
-.title {
-    font-weight: 100;
-    font-size: clamp(2rem, 8vw, 10ex); /* スマホでは小さく、PCでは大きく可変 */
-    margin-top: 0px;
-    margin-bottom: 0px;
+/* =========================================
+   ヘッダーエリア
+   ========================================= */
+.site-header {
+  padding: 40px 0 20px;
 }
 
 .subtitle {
-    font-weight: 100;
-    margin-top: 20px;
-    margin-bottom: 0px;
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.1rem;
 }
 
-.rits {
-    font-weight: 400;
-    color: Darkred;
+/* タイトル全体を大きな四角にする設定 */
+.title {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 100;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  /* ↓↓↓ ここから変更・追加 ↓↓↓ */
+  display: inline-flex; /* 中身の要素を横並びにして高さを揃える */
+  background-color: var(--main-color); /* 全体の背景をエンジ色に */
+  border: 2px solid var(--main-color); /* 外枠もエンジ色で統一 */
+  /* ↑↑↑ ここまで変更・追加 ↑↑↑ */
 }
 
-/* ナビゲーション設定 */
-#nav_red {
-    font-weight: 200;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    background: #cfcfcf; /* 背景色をulから全体へ移動 */
+.accent-text { color: var(--main-color); font-weight: 400; }
+
+/* 「松浦総一」部分（白抜き文字） */
+.highlight {
+  background-color: var(--main-color); /* 背景は親と同じエンジ色 */
+  color: #fff; /* 文字色を白に */
+  padding: 0 15px; /* 余白を少し広めに調整 */
+  font-weight: 400;
+  display: flex;          /* 上下中央揃えのために追加 */
+  align-items: center;    /* 上下中央揃えのために追加 */
 }
 
-#nav_red ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex; /* Flexboxに変更して配置を制御 */
-    flex-wrap: wrap; /* スマホで折り返すように */
-    justify-content: center; /* 中央寄せ */
-}
-
-#nav_red li {
-    width: auto; /* 固定幅を解除 */
-    flex-grow: 1; /* 均等に広がる */
-}
-
-#nav_red li a {
-    background: #cfcfcf;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
-    line-height: 40px;
-    padding: 0 10px; /* パディングを少し調整 */
-    transition: background 0.3s;
-}
-
-#nav_red li a:hover {
-    text-decoration: none;
-    background: Darkred;
-    color: #FFF;
-}
-
-ul #nav_red li.current a {
-    background: #000;
-    color: #fff;
-}
-
-/* 定義リスト（dl）のレイアウト調整 */
-dl.plan, dl.place, dl.profile {
-    overflow: hidden; /* float解除のため */
-}
-
-dl.plan dt {
-    float: left;
-    width: 8em;
-    font-weight: normal;
-    font-size: 90%;
-    clear: both; /* 崩れ防止 */
-}
-dl.plan dd {
-    margin-left: 8em;
-    margin-bottom: .5em;
-    font-size: 90%;
-}
-
-dl.place dt {
-    float: left;
-    width: 6em;
-    font-weight: normal;
-    color: Darkred;
-    clear: both;
-}
-dl.place dd {
-    margin-left: 6em;
-    margin-bottom: .5em;
-}
-
-/* コンポーネント */
-.btn {
-    background: #EEE;
-    border: 2px dotted #CCC;
-    color: #111;
-    width: 100px;
-    padding: 10px 0;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.midashi {
-    border-bottom: 2px dotted Darkred;
-    border-left: 10px solid Darkred;
-    padding: 7px;
-    margin-top: 0;
-}
-
-.red {
-    color: #fff;
-    font-weight: 400;
-    background: DarkRed;
-    border: 2px solid Darkred;
-    padding: 0 5px;
-}
-.redline {
-    border: 2px solid Darkred;
-    padding: 0 5px;
-}
-
-.twitter {
-    color: #00aced;
-    border-bottom: 2px dotted #00aced;
-    padding-bottom: 5px;
-}
-
-footer {
-    padding: 20px 0;
-    margin-top: 30px;
-    border-top: 1px solid #ddd;
-    text-align: center;
+/* 「ゼミナール」部分（白背景） */
+.highlight-outline {
+  background-color: #fff; /* 背景を白に */
+  color: var(--main-color); /* 文字色をエンジ色に */
+  padding: 0 15px; /* 余白を調整 */
+  margin-left: 0; /* 隙間をなくす */
+  font-weight: 400;
+  display: flex;          /* 上下中央揃えのために追加 */
+  align-items: center;    /* 上下中央揃えのために追加 */
+  /* 以前の border 指定は削除 */
 }
 
 /* =========================================
-   スマートフォン用メディアクエリ (768px以下)
+   ナビゲーション (Flexbox)
    ========================================= */
-@media screen and (max-width: 768px) {
-    /* グリッドを解除して縦積みにする */
-    .grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12,
-    .project, .project2, .project3, .project4, .project0, .logo, .grid4block {
-        float: none;
-        width: 100%;
-        margin-left: 0;
-        display: block;
-        margin-bottom: 20px;
-    }
+.site-nav {
+  background-color: var(--nav-bg);
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ddd;
+}
 
-    /* ナビゲーションを2列にするなど調整 */
-    #nav_red li {
-        width: 50%; /* 2列表示 */
-        border-bottom: 1px solid #ddd;
-    }
+.site-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* スマホで折り返し */
+  justify-content: flex-start;
+}
+
+.site-nav li a {
+  display: block;
+  padding: 15px 25px;
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.site-nav li a:hover,
+.site-nav li a.current {
+  background-color: var(--nav-hover);
+  color: #fff;
+}
+
+/* =========================================
+   メインレイアウト (CSS Grid)
+   ========================================= */
+.layout-grid {
+  display: grid;
+  /* PC: メイン(可変) + サイドバー(300px固定) 
+    gap: カラム間の余白
+  */
+  grid-template-columns: 1fr 300px;
+  gap: 50px;
+  margin-bottom: 60px;
+  align-items: start; /* 上揃え */
+}
+
+/* メインコンテンツ装飾 */
+.heading-primary {
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-left: 8px solid var(--main-color);
+  border-bottom: 1px dotted var(--main-color);
+  padding: 10px 15px;
+  margin-bottom: 30px;
+}
+
+/* =========================================
+   サイドバー (Grid内のアイテム)
+   ========================================= */
+.sidebar {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.info-block { margin-bottom: 30px; }
+.info-block:last-child { margin-bottom: 0; }
+
+.heading-secondary {
+  font-size: 1.2rem;
+  color: var(--main-color);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+/* --- ↓↓↓ ここから修正 ↓↓↓ --- */
+
+/* 定義リスト (DL) をGrid化して整列 */
+.info-list, .schedule-list {
+  display: grid;              /* Gridレイアウトを適用 */
+  gap: 5px 10px;             /* 縦5px、横10pxの間隔 */
+  margin: 0;
+  font-size: 0.9rem;
+  align-items: baseline;      /* 文字のベースライン（下端）を揃える */
+}
+
+/* info-list は 左側(dt)を 4文字分 に固定 */
+.info-list {
+  grid-template-columns: 4em 1fr; 
+}
+
+/* schedule-list は 左側(dt)を 6文字分 に固定（日付が入るため） */
+.schedule-list {
+  grid-template-columns: 7em 1fr; /* 少し余裕を持たせて7em */
+}
+
+/* dt, dd の個別のスタイル（float等は削除） */
+.info-list dt, .schedule-list dt {
+  font-weight: 700;
+  color: var(--main-color);
+  margin: 0; /* 余計なマージンを削除 */
+}
+
+.info-list dd, .schedule-list dd {
+  margin: 0; /* 余計なマージンを削除 */
+}
+
+/* 以前の clearfix (::after) は不要なので削除しました */
+
+/* =========================================
+   フッター
+   ========================================= */
+.site-footer {
+  border-top: 1px solid #ddd;
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* =========================================
+   レスポンシブ設定 (タブレット・スマホ)
+   ========================================= */
+@media (max-width: 768px) {
+  .site-header { padding-top: 20px; text-align: center; }
+  
+  .title { font-size: 2rem; }
+  .highlight-outline { display: inline; margin: 0; }
+  
+  /* ナビゲーションを2列に */
+  .site-nav li { width: 50%; text-align: center; }
+  .site-nav li a { padding: 10px; border-bottom: 1px solid #eee; }
+
+  /* Gridを1カラムに変更 */
+  .layout-grid {
+    grid-template-columns: 1fr; /* 縦積み */
+    gap: 30px;
+  }
+  
+  .sidebar {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}
+
+/* =========================================
+   蛍光ペン風マーカー設定
+   ========================================= */
+
+/* --- 1. 静的なマーカー（ずっと引かれている） --- */
+.marker {
+    display: inline; /* 必須：複数行に対応 */
     
-    /* タイトルの調整 */
-    .title {
-        font-size: 2.5rem; /* スマホでのサイズ調整 */
-    }
+    /* グラデーション：上60%透明、下40%色 */
+    background-image: linear-gradient(transparent 60%, var(--marker-color, #FCFFC1) 60%);
+    
+    /* 改行時のスタイルを自然にする設定 */
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
 
-    /* パディングの微調整 */
-    .midashi {
-        font-size: 1.2rem;
-    }
+/* --- 2. アニメーションマーカー（伸びる） --- */
+.marker-anim {
+    display: inline; /* これもinlineにするのが安全 */
+    
+    /* 静的マーカーと同じ変数を使うように修正（これで青やピンクもアニメーションできます！） */
+    background-image: linear-gradient(transparent 60%, var(--marker-color, #FCFFC1) 60%);
+    
+    /* 初期状態：幅0% */
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    
+    /* 重要：左下を基準に伸ばす（これを指定しないとブラウザによって挙動が怪しい場合がある） */
+    background-position: left bottom;
+    
+    /* 伸びる速度 */
+    transition: background-size 0.8s ease;
+    
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* ホバー時 または .is-activeクラスがついた時に伸ばす */
+.marker-anim:hover,
+.marker-anim.is-active {
+    background-size: 100% 100%;
+}
+
+
+/* --- 3. 色のバリエーション --- */
+/* 変数を上書きするだけで、静的・アニメーション両方に反映されます */
+
+.marker-yellow {
+    --marker-color: #FCFFC1; /* 黄色 */
+}
+
+.marker-blue {
+    --marker-color: #88E2EA; /* 水色 */
+}
+
+.marker-pink {
+    --marker-color: #ffcdd2; /* ピンク */
+}
+
+.marker-green {
+    --marker-color: #ccffcc; /* 緑（追加案） */
+}
+
+/* =========================================
+   Activity & Member ページ用スタイル
+   ========================================= */
+
+/* コンテンツエリアの余白調整 */
+.main-content-area {
+  margin-bottom: 80px;
+}
+
+.mb-60 { margin-bottom: 60px; }
+.lead-text { font-size: 1.1rem; }
+.note-text { font-size: 0.9rem; margin-bottom: 10px; color: #666; }
+
+/* 2カラムグリッド (Activityページ用) */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+/* メンバーカードグリッド (Memberページ用) */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自動折り返し */
+  gap: 30px;
+}
+
+/* カードデザイン */
+.content-card, .member-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03); /* ほんのり影 */
+}
+
+/* 担任カードを目立たせる */
+.teacher-card {
+  border-left: 5px solid var(--main-color);
+}
+
+/* 横幅いっぱいのカード（OB/OG用など） */
+.member-card.full-width,
+.content-card.full-width {
+  grid-column: 1 / -1; 
+}
+
+/* リストのスタイル調整 */
+.styled-list {
+  padding-left: 20px;
+  margin: 0;
+}
+.styled-list li {
+  margin-bottom: 8px;
+}
+
+/* メンバー情報リスト (dl/dt/dd grid) */
+.profile-list {
+  display: grid;
+  grid-template-columns: 5em 1fr; /* 左5文字、右可変 */
+  gap: 5px 10px;
+  margin: 0;
+  font-size: 0.95rem;
+  align-items: baseline;
+}
+
+.profile-list.ob-list {
+  grid-template-columns: 9em 1fr; /* OBOGは肩書きが長いので少し広く */
+}
+
+.profile-list dt {
+  color: var(--main-color);
+  font-weight: 700;
+  margin: 0;
+}
+.profile-list dd {
+  margin: 0;
+}
+
+/* スマホ用調整 */
+@media (max-width: 768px) {
+  .profile-list.ob-list {
+    grid-template-columns: 1fr; /* スマホでは縦積みに変更 */
+  }
+  .profile-list.ob-list dt {
+    margin-top: 10px;
+  }
 }
