@@ -1,21 +1,39 @@
-@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+/* HTTPSに変更 */
+@import url("https://fonts.googleapis.com/earlyaccess/notosansjapanese.css");
 
 body {
     font-family: 'Noto Sans Japanese', sans-serif;
     font-weight: 200;
-    font-size: 120%;
-    /*background: #F7F7F7 url(pattern.png) fixed;*/
+    font-size: 100%; /* 120%だとスマホで大きすぎる場合があるため調整 */
     color: #555;
+    margin: 0; /* ブラウザデフォルトの余白をリセット */
+    line-height: 1.6;
 }
 
-.container {width: 978px; margin: 0 auto;}
-.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11,
-.project, .project2, .project3, .project4, .project0, .logo, grid4block {
+/* 画像がコンテナからはみ出さないように設定 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* コンテナ設定：最大幅を指定し、画面が狭いときは100%にする */
+.container {
+    width: 978px;
+    max-width: 100%; 
+    margin: 0 auto;
+    padding: 0 10px; /* スマホで端がくっつかないようにパディング追加 */
+    box-sizing: border-box; /* パディングを含めた幅計算にする */
+}
+
+/* グリッド共通設定 */
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12,
+.project, .project2, .project3, .project4, .project0, .logo, .grid4block {
     float: left;
     display: inline;
     margin-left: 30px;
 }
 
+/* 各グリッド幅の設定 */
 .grid1 { width: 54px }
 .grid2 { width: 138px }
 .grid3 { width: 222px }
@@ -27,7 +45,9 @@ body {
 .grid9 { width: 726px }
 .grid10 { width: 810px }
 .grid11 { width: 894px }
-.first {margin-left: 0; clear: left;}
+.grid12 { width: 978px; margin-left: 0; } /* 全幅用に追加 */
+
+.first { margin-left: 0; clear: left; }
 
 .clearfix:after {
     visibility: hidden;
@@ -38,43 +58,47 @@ body {
     height: 0;
 }
 
-
+/* タイトル周り */
 .title {
-	font-weight: 100;
-  font-size: 10ex;
-  margin-top:0px;
-  margin-bottom:0px;
+    font-weight: 100;
+    font-size: clamp(2rem, 8vw, 10ex); /* スマホでは小さく、PCでは大きく可変 */
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .subtitle {
-	font-weight: 100;
-  margin-top:0px;
-  margin-bottom:0px;
+    font-weight: 100;
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
 
 .rits {
-  font-weight: 400;
-  color: Darkred;
-
+    font-weight: 400;
+    color: Darkred;
 }
 
+/* ナビゲーション設定 */
 #nav_red {
     font-weight: 200;
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 100%;
+    background: #cfcfcf; /* 背景色をulから全体へ移動 */
 }
 
 #nav_red ul {
-    background: #cfcfcf;
-    height: 40px;
+    margin: 0;
+    padding: 0;
     list-style: none;
+    display: flex; /* Flexboxに変更して配置を制御 */
+    flex-wrap: wrap; /* スマホで折り返すように */
+    justify-content: center; /* 中央寄せ */
 }
 
 #nav_red li {
-    float: left;
-    padding: 0;
-    width:138px;
+    width: auto; /* 固定幅を解除 */
+    flex-grow: 1; /* 均等に広がる */
 }
 
 #nav_red li a {
@@ -84,7 +108,8 @@ body {
     text-decoration: none;
     color: #333;
     line-height: 40px;
-    padding: 0 25px;
+    padding: 0 10px; /* パディングを少し調整 */
+    transition: background 0.3s;
 }
 
 #nav_red li a:hover {
@@ -93,92 +118,112 @@ body {
     color: #FFF;
 }
 
-#nav_red li ul {
-    position: absolute;
-    background: #222;
-    display: none;
-    height: auto;
-    width: 138px;
-    z-index: 2;
+ul #nav_red li.current a {
+    background: #000;
+    color: #fff;
 }
 
-ul #nav_red li.current {
-  background: #000;
+/* 定義リスト（dl）のレイアウト調整 */
+dl.plan, dl.place, dl.profile {
+    overflow: hidden; /* float解除のため */
 }
 
 dl.plan dt {
     float: left;
     width: 8em;
-    padding: 0 0 0 2px;
     font-weight: normal;
-    /*color: DarkOrange;*/
-    font-size: 80%;
+    font-size: 90%;
+    clear: both; /* 崩れ防止 */
 }
 dl.plan dd {
     margin-left: 8em;
-    margin-bottom: .2em;
-    padding: 0 0 5px 20px;
-    font-size: 80%;
+    margin-bottom: .5em;
+    font-size: 90%;
 }
 
 dl.place dt {
     float: left;
     width: 6em;
-    padding: 0 0 0 2px;
     font-weight: normal;
     color: Darkred;
+    clear: both;
 }
 dl.place dd {
     margin-left: 6em;
-    margin-bottom: .2em;
-    padding: 0 0 5px 10px;
+    margin-bottom: .5em;
 }
 
-dl.profile dt {
-    float: left;
-    width: 8em;
-    padding: 0 0 0 2px;
-    font-weight: normal;
-    color: DarkRed;
-}
-
-dl.profile dd {
-    margin-left: 6em;
-    margin-bottom: .2em;
-    padding: 0 0 5px 10px;
-}
-
+/* コンポーネント */
 .btn {
-	background: #EEE;
-	border: 2px dotted #CCC;
-	color: #111;
-	width: 100px;
-	padding: 10px 0;
+    background: #EEE;
+    border: 2px dotted #CCC;
+    color: #111;
+    width: 100px;
+    padding: 10px 0;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
 }
 
 .midashi {
-  border-bottom:2px dotted Darkred;
-  border-left:10px solid Darkred;
-  padding:7px;
+    border-bottom: 2px dotted Darkred;
+    border-left: 10px solid Darkred;
+    padding: 7px;
+    margin-top: 0;
 }
 
-.top {
-  border-top: 1px solid #d3381c;
-  border-bottom: 1px solid #d3381c;padding:7px;
+.red {
+    color: #fff;
+    font-weight: 400;
+    background: DarkRed;
+    border: 2px solid Darkred;
+    padding: 0 5px;
 }
-
-.red{
-  color: #fff;
-  font-weight: 400;
-  background:DarkRed;
-  border: solid;
-  border-color:Darkred;
-  }
-.redline{
-  border: solid;
-  border-color:Darkred;
+.redline {
+    border: 2px solid Darkred;
+    padding: 0 5px;
 }
 
 .twitter {
-  color:#00aced ;
+    color: #00aced;
+    border-bottom: 2px dotted #00aced;
+    padding-bottom: 5px;
+}
+
+footer {
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+/* =========================================
+   スマートフォン用メディアクエリ (768px以下)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* グリッドを解除して縦積みにする */
+    .grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11, .grid12,
+    .project, .project2, .project3, .project4, .project0, .logo, .grid4block {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    /* ナビゲーションを2列にするなど調整 */
+    #nav_red li {
+        width: 50%; /* 2列表示 */
+        border-bottom: 1px solid #ddd;
+    }
+    
+    /* タイトルの調整 */
+    .title {
+        font-size: 2.5rem; /* スマホでのサイズ調整 */
+    }
+
+    /* パディングの微調整 */
+    .midashi {
+        font-size: 1.2rem;
+    }
 }
