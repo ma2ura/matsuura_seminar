@@ -334,3 +334,83 @@ a:hover { opacity: 0.7; }
 .marker-green {
     --marker-color: #ccffcc; /* 緑（追加案） */
 }
+
+/* =========================================
+   トップページ用ナビゲーションボタン
+   ========================================= */
+
+/* ボタンを横並びにするコンテナ */
+.cta-buttons {
+  display: flex;
+  gap: 20px;           /* ボタン間の隙間 */
+  margin: 40px 0;      /* 上下の余白 */
+  justify-content: center; /* 中央寄せ */
+}
+
+/* ボタン本体のデザイン */
+.btn-link {
+  display: flex;
+  flex-direction: column; /* 文字を縦積みに */
+  justify-content: center;
+  align-items: center;
+  width: 240px;           /* ボタンの幅 */
+  padding: 20px 10px;
+  background-color: #fff;
+  border: 2px solid var(--main-color); /* エンジ色の枠線 */
+  border-radius: 4px;     /* 角を少し丸く */
+  color: var(--main-color);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+/* マウスを乗せた時の動き */
+.btn-link:hover {
+  background-color: var(--main-color); /* 背景をエンジ色に */
+  color: #fff;            /* 文字を白に */
+  transform: translateY(-3px); /* ほんの少し浮き上がる */
+  box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2); /* 影をつける */
+}
+
+/* ボタン内の文字スタイル */
+.btn-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.btn-desc {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.btn-arrow {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* スマホ用の設定（縦並びにする） */
+@media (max-width: 768px) {
+  .cta-buttons {
+    flex-direction: column; /* 縦並び */
+    align-items: stretch;   /* 横幅いっぱいに */
+    gap: 15px;
+  }
+
+  .btn-link {
+    width: auto; /* 幅指定を解除して親に合わせる */
+    flex-direction: row; /* スマホでは横並びレイアウトの方が見やすい */
+    justify-content: space-between;
+    padding: 15px 20px;
+    align-items: center;
+  }
+  
+  .btn-title { margin-bottom: 0; font-size: 1.1rem; }
+  .btn-desc { display: none; } /* スマホでは細かい説明を省略してスッキリさせる */
+  .btn-arrow { margin-top: 0; }
+}
