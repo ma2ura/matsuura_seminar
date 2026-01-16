@@ -9,6 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
+
 </head>
 <body>
 
@@ -31,18 +36,72 @@
   </nav>
 
   <main class="inner-container main-content-area">
-    
+
     <section class="mb-60">
-      <h2 class="heading-primary">松浦ゼミで大事にしていること</h2>
-      <p class="lead-text"><strong>自主性</strong></p>
+      <h2 class="heading-primary">ゼミで学習すること</h2>
+
+
+      <div class="content-card full-width">
+
+        <h3 class="heading-secondary">日経STOCKリーグ</h3>
+        <p>
+          3回生ゼミで1年間にわたり取り組む日経STOCKリーグについては、以下の公式サイトを見てください。<br>
+          <a href="https://manabow.com/sl/" target="_blank" rel="noopener noreferrer" class="btn-red">日経STOCKリーグ</a>
+        </p>
+        <p>
+          中学生の部、高校生の部、大学生の部があり、それぞれの優秀レポートも掲載されているので、ゼミでどんなことをするのかの参考にしてください。
+        </p>
+
+        <h3 class="heading-secondary">教科書</h3>
+
+        <span class="marker marker-yellow">2026年度 笠原・村宮 (2022)「実証会計・ファイナンス」新世社(予定)</span>
+        を使って，次のような内容を学習する予定です。実際に以下のような道具を使ってデータ分析を行うことができるようになることを目指します。
+
+        <h3 class="heading-secondary">財務会計</h3>
+        財務会計の基礎的な知識と財務分析と企業価値評価モデルの基礎を学びます。例えば次のような内容が含まれます。
+          <ul class="styled-list">
+            <li>(連結)貸借対照表，(連結)損益計算書，(連結)キャッシュ・フロー計算書</li>
+            <li>財務分析として安全性，成長性，収益性の指標</li>
+            <li>企業価値評価モデルとして配当割引モデル，DCF，残余利益モデル，例えば以下のようなモデル</li>
+              \[
+                \begin{align*}
+                V_0 = BVE_0 + \sum_{t=1}^{\infty} \frac{NI_t - r_e \times BVE_{t-1}}{(1 + r_e)^t} \\
+                \end{align*}
+              \]
+          </ul>
+
+        <h3 class="heading-secondary">ファイナンス</h3>
+        ファイナンスの中でも投資論を中心に学びます。ポートフォリオやリターン，ベータといった概念を学びます。例えば次のような内容が含まれます。
+          <ul class="styled-list">
+            <li>投資とリターン，異常リターン</li>
+            たとえば2資産からなるポートフォリオのリターンは以下のように表されます。
+                \[
+                \begin{align*}
+                R_p &= \omega _1 \left ( \frac{X_{1,1}}{X_{1,0}} -1 \right )  + \omega _2 \left ( \frac{X_{2,1}}{X_{2,0}} -1 \right ) \nonumber \\
+                &= \omega _1 R_1 + \omega _2 R_2
+                \end{align*}
+                \]
+            <li>分散投資と効率的フロンティア</li>
+              \[
+              \begin{aligned}
+                \sigma^2_p & \equiv \mathbb{E} [(R_p - \mu_p )^2]\\
+                &= w_1^2 \sigma _1^2 + w_2^2 \sigma^2_2 + 2 w_1 w_2 \sigma _{12}
+              \end{aligned}
+              \]
+            <li>CAPMとFama & Frenchの3ファクターモデル</li>
+            \[
+            (\mu_i - r_f) = \frac{\mathbb{Cov}(R_i, R_M)}{\sigma ^2_M} (\mu_M - r_f)
+            \]
+          </ul>
+      </div>
     </section>
 
     <h2 class="heading-primary">活動記録</h2>
-    
+
     <div class="grid-2-col">
-      
+
       <div class="content-card">
-        <h3 class="heading-secondary">テキスト輪読</h3>
+        <h3 class="heading-secondary">輪読した教科書</h3>
         <ul class="styled-list">
           <li><span class="marker marker-yellow">2026年度 笠原・村宮 (2022)「実証会計・ファイナンス」新世社(予定)</span></li>
           <li>2024年度 松浦 (2024)「Rによるデータ分析入門」東京図書</li>
@@ -60,17 +119,6 @@
           <li>ネスレ日本との共同企画</li>
           <li>神戸大学との合同ゼミ</li>
         </ul>
-      </div>
-
-      <div class="content-card full-width">
-        <h3 class="heading-secondary">ゼミで勉強したこと</h3>
-        <p>
-          3回生ゼミでとり組む日経ストックリーグについては、以下をご覧ください。<br>
-          <a href="https://manabow.com/sl/" target="_blank" rel="noopener noreferrer">日経STOCKリーグ</a>
-        </p>
-        <p>
-          中学生の部、高校生の部、大学生の部があり、それぞれの優秀レポートも掲載されているので、ゼミでどんなことをするのかの参考にしてください。
-        </p>
       </div>
 
     </div>

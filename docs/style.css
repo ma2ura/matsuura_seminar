@@ -8,10 +8,10 @@
   --bg-color: #fdfdfd;
   --nav-bg: #f4f4f4;
   --nav-hover: #8B0000;
-  
+
   /* Google Fonts設定: 英数字はRoboto, 日本語はNoto Sans JP */
   --font-base: "Roboto", "Noto Sans JP", sans-serif;
-  
+
   --max-width: 1000px;
 }
 
@@ -104,12 +104,25 @@ a:hover { opacity: 0.7; }
   justify-content: flex-start;
 }
 
+/* --- ここを追記・修正 --- */
+
+/* リストアイテム自体に「幅を均等に分け合う」設定を追加 */
+.site-nav li {
+  flex: 1;           /* 均等幅にする魔法のコード */
+  text-align: center; /* 文字を真ん中に寄せる */
+}
+
+/* リンクのスタイル修正 */
 .site-nav li a {
   display: block;
-  padding: 15px 25px;
+  padding: 15px 0;    /* 横幅は自動で決まるので、横のpaddingは0にする */
   color: var(--text-color);
-  font-weight: 500; /* 視認性向上のため少し太く */
+  font-weight: 500;
+  width: 100%;        /* 親(li)の幅いっぱいに広げる */
+  box-sizing: border-box;
 }
+
+/* --- ここまで --- */
 
 .site-nav li a:hover,
 .site-nav li a.current {
@@ -195,12 +208,12 @@ a:hover { opacity: 0.7; }
    ========================================= */
 @media (max-width: 768px) {
   .site-header { padding-top: 20px; text-align: center; }
-  
+
   .title {
     font-size: 2.2rem; /* スマホでも少し大きく */
     display: inline-flex;
   }
-  
+
   .site-nav li { width: 50%; text-align: center; }
   .site-nav li a { padding: 10px; border-bottom: 1px solid #eee; }
 
@@ -208,9 +221,14 @@ a:hover { opacity: 0.7; }
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .sidebar { padding: 0; border: none; background: transparent; }
 }
+
+/* スマホでは2列グリッドを1列に戻す */
+  .grid-2-col {
+    grid-template-columns: 1fr;
+  }
 
 /* =========================================
    Activity & Member ページ用追加スタイル
@@ -223,7 +241,7 @@ a:hover { opacity: 0.7; }
 /* 2カラムグリッド */
 .grid-2-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
 
@@ -245,7 +263,7 @@ a:hover { opacity: 0.7; }
 
 .member-card.full-width,
 .content-card.full-width {
-  grid-column: 1 / -1; 
+  grid-column: 1 / -1;
 }
 
 .teacher-card { border-left: 5px solid var(--main-color); }
@@ -279,10 +297,10 @@ a:hover { opacity: 0.7; }
 /* --- 1. 静的なマーカー（ずっと引かれている） --- */
 .marker {
     display: inline; /* 必須：複数行に対応 */
-    
+
     /* グラデーション：上60%透明、下40%色 */
     background-image: linear-gradient(transparent 60%, var(--marker-color, #FCFFC1) 60%);
-    
+
     /* 改行時のスタイルを自然にする設定 */
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
@@ -291,20 +309,20 @@ a:hover { opacity: 0.7; }
 /* --- 2. アニメーションマーカー（伸びる） --- */
 .marker-anim {
     display: inline; /* これもinlineにするのが安全 */
-    
+
     /* 静的マーカーと同じ変数を使うように修正（これで青やピンクもアニメーションできます！） */
     background-image: linear-gradient(transparent 60%, var(--marker-color, #FCFFC1) 60%);
-    
+
     /* 初期状態：幅0% */
     background-size: 0% 100%;
     background-repeat: no-repeat;
-    
+
     /* 重要：左下を基準に伸ばす（これを指定しないとブラウザによって挙動が怪しい場合がある） */
     background-position: left bottom;
-    
+
     /* 伸びる速度 */
     transition: background-size 0.8s ease;
-    
+
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
 }
@@ -409,8 +427,33 @@ a:hover { opacity: 0.7; }
     padding: 15px 20px;
     align-items: center;
   }
-  
+
   .btn-title { margin-bottom: 0; font-size: 1.1rem; }
   .btn-desc { display: none; } /* スマホでは細かい説明を省略してスッキリさせる */
   .btn-arrow { margin-top: 0; }
+}
+
+/* =========================================
+   汎用ボタンデザイン
+   ========================================= */
+.btn-red {
+  display: inline-block;      /* ボタンの大きさを持たせる */
+  background-color: var(--main-color);
+  color: #fff;                /* 文字色を白に */
+  padding: 12px 30px;         /* 内側の余白（上下 左右） */
+  border-radius: 50px;        /* 丸みを強くしてカプセル型に */
+  text-decoration: none;      /* 下線を消す */
+  font-weight: 700;           /* 太字 */
+  transition: all 0.3s ease;  /* アニメーション */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16); /* 影をつける */
+  margin: 10px 0;             /* 周りの余白 */
+}
+
+/* マウスを乗せた時の動き */
+.btn-red:hover {
+  background-color: var(--accent-color); /* 少し明るい色に変化 */
+  color: #fff;
+  transform: translateY(-2px);           /* ふわっと浮き上がる */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  opacity: 1;                            /* 既存のaタグの薄くなる設定を無効化 */
 }
