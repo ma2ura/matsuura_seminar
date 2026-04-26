@@ -3,3 +3,5 @@
 
 webr-serviceworker.js
 webr-worker.js
+
+**/*.quarto_ipynb

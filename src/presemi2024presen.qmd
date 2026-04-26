@@ -1,6 +1,6 @@
 ---
 title: |
-  <b>プレゼミ2024</b> </br>
+  <b>プレゼミ2026</b> </br>
   <span style="color: #282A36; ">スライド</span>
 author: "松浦総一"
 format:
@@ -30,15 +30,6 @@ lang: "ja"
 # server: shiny
 monofontoptions:
   - Scale = .5
-
-# Set default options for every bookpage that may or may not include webR.
-webr:
-  # show-startup-message: false    # Disable displaying status of webR initialization
-  packages: ['ggplot2', 'ggthemes','dplyr', 'gtsummary'] # Install R packages on document open
-
-# Attach webR extension for the project
-filters:
-  - webr
 ---
 
 ## プレゼミとは？
@@ -63,7 +54,7 @@ mystyle <- list (#  ggplotのテーマ
 )
 ```
 
-令和6年度(2024年度)の松浦プレゼミでは、**データに強い経営学部生**となるため、データ分析のツールとしてプログラミング言語**R**を使った分析スキルの修得を目指します。
+令和8年度(2026年度)の松浦プレゼミでは、**データに強い経営学部生**となるため、データ分析のツールとしてプログラミング言語**R**を使った分析スキルの修得を目指します。
 
 
 ## 分析スキル

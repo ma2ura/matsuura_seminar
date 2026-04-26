@@ -13,7 +13,7 @@ website:
       - href: presemi2024presen.html
         text: プレゼン
 format:
-  html:
+  live-html:
     theme: simplex
     html-math-method: katex
 
@@ -36,10 +36,11 @@ monofontoptions:
   - Scale = .5
 
 # Set default options for every bookpage that may or may not include webR.
-webr:
-  # show-startup-message: false    # Disable displaying status of webR initialization
-  packages: ['ggplot2', 'ggthemes','dplyr'] # Install R packages on document open
+# webr:
+#   # show-startup-message: false    # Disable displaying status of webR initialization
+#   packages: ['ggplot2', 'ggthemes','dplyr'] # Install R packages on document open
 
-# Attach webR extension for the project
-filters:
-  - webr
+# # Attach webR extension for the project
+# filters:
+#   - webr
+engine: knitr
