@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>勉強内容 | 立命館大学・松浦ゼミ</title>
-  <meta name="description" content="松浦ゼミの活動内容や使用テキストの紹介です。">
+  <meta name="description" content="松浦ゼミで学ぶ内容（財務会計・ファイナンス・データ分析）、日経STOCKリーグ、使用テキスト、4学期分のロードマップとよくある質問の紹介です。">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,105 +37,401 @@
 
   <main class="inner-container main-content-area">
 
+    <!-- ===== リード ===== -->
+    <section class="lead-box">
+      <p class="catch">「その会社、ほんとうに儲かっているの？」<br>を、データで確かめられるようになる2年間。</p>
+      <p>
+        ニュースや就活のサイトに書かれた「成長企業」「優良企業」という言葉を、
+        <span class="marker marker-yellow">自分で数字を取ってきて検証できる</span>ようになるのが、このゼミのゴールです。
+        そのために、企業の財務データを読む力（会計）、株価やリスクを測る力（ファイナンス）、
+        そしてデータを実際に動かす道具（プログラミング言語R）を、順番に身につけていきます。
+      </p>
+      <p>
+        必要なのは数学やプログラミングの得意さではありません。
+        <span class="marker marker-pink">「気になったことを、なんとなくで終わらせたくない」</span>という性格のほうがずっと大事です。
+        ほとんどのゼミ生がRにも統計にも初めて触れる状態からスタートしています。
+      </p>
+    </section>
+
+    <!-- ===== 3つのポイント ===== -->
+    <h2 class="heading-primary">3分でわかる松浦ゼミ</h2>
+
+    <div class="point-grid">
+      <div class="point-card">
+        <span class="point-num">POINT 1</span>
+        <h3>「たぶん」ではなく<br>数字で主張する</h3>
+        <p>
+          思いつきの意見ではなく、理論から仮説を立て、データで検証し、結果を解釈する。
+          卒業論文という形で、自分の名前の入った分析を1本仕上げます。
+        </p>
+      </div>
+      <div class="point-card">
+        <span class="point-num">POINT 2</span>
+        <h3>一生使える<br>道具が手に入る</h3>
+        <p>
+          データ分析言語R、レポート自動作成のQuarto、バージョン管理のGitHub。
+          Excelの手作業では届かないことが、数行のコードでできるようになります。
+        </p>
+      </div>
+      <div class="point-card">
+        <span class="point-num">POINT 3</span>
+        <h3>教室の外に<br>出ていく</h3>
+        <p>
+          日経STOCKリーグへの挑戦、他大学との研究交流、企業と自治体を巻き込んだ
+          課題解決プロジェクト。学外の人に自分の分析をぶつける機会があります。
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== 研究テーマ例 ===== -->
+    <h2 class="heading-primary">こんな問いに、データで答えを出す</h2>
+    <p class="note-text">※ ゼミで扱えるテーマのイメージです。卒業論文のテーマは、自分の興味から自由に決めます。</p>
+
+    <div class="q-grid mb-60">
+      <div class="q-card">
+        <span class="q-mark">Q.</span>社長が交代すると、会社の業績は本当に変わるのか？
+        <span class="q-note">→ 交代前後の利益率を数百社分集めて比較する</span>
+      </div>
+      <div class="q-card">
+        <span class="q-mark">Q.</span>決算発表の翌日、株価はどれくらい動くのか？
+        <span class="q-note">→ 「予想を超えた利益」と株価反応の関係を測る</span>
+      </div>
+      <div class="q-card">
+        <span class="q-mark">Q.</span>節税に積極的な企業は、投資家から評価されるのか？
+        <span class="q-note">→ 税負担率と企業価値の関係を分析する（担任の専門領域）</span>
+      </div>
+      <div class="q-card">
+        <span class="q-mark">Q.</span>SDGs・ESGに熱心な企業は、株式市場で高く評価されているのか？
+        <span class="q-note">→ 開示情報を数値化して、株価・リターンと突き合わせる</span>
+      </div>
+      <div class="q-card">
+        <span class="q-mark">Q.</span>株主優待や自社株買いは、株価に効くのか？
+        <span class="q-note">→ 発表日前後の異常リターンを計算する</span>
+      </div>
+      <div class="q-card">
+        <span class="q-mark">Q.</span>その広告は、売上をどれだけ押し上げたのか？
+        <span class="q-note">→ マーケティング・データを使って効果を切り分ける</span>
+      </div>
+    </div>
+
+    <!-- ===== ロードマップ ===== -->
+    <h2 class="heading-primary">4つの学期で、こう進みます</h2>
+
+    <div class="content-card full-width mb-60">
+      <ul class="roadmap">
+        <li>
+          <span class="term">3回生 春</span><span class="term-title">道具をそろえる</span>
+          <p>
+            テキストの輪読で、会計・ファイナンスの理論と統計分析の基礎を学びます。
+            同時にRをインストールして、データの読み込み・集計・グラフ作成・回帰分析までを手を動かして練習。
+            毎週、担当者が報告し、全員で議論します。
+          </p>
+        </li>
+        <li>
+          <span class="term">3回生 秋</span><span class="term-title">日経STOCKリーグで実戦</span>
+          <p>
+            チームを組み、投資テーマを決め、上場企業約4000社から20社以内を選び抜いて
+            企業分析レポートを書き上げます。春に学んだ分析手法を、締切のあるアウトプットで使い切る半年間です。
+          </p>
+        </li>
+        <li>
+          <span class="term">4回生 春</span><span class="term-title">自分の問いを決める</span>
+          <p>
+            査読付き学術雑誌の論文を読み解き、「まだ答えが出ていないこと」を探します。
+            必要な専門書を輪読しながら、卒業論文のテーマと分析設計を固めます。
+          </p>
+        </li>
+        <li>
+          <span class="term">4回生 秋</span><span class="term-title">卒業論文を書き上げる</span>
+          <p>
+            データを集め、分析し、結果を解釈し、学部生としての貢献を文章にします。
+            目標は<span class="marker marker-pink">「将来、自慢できる卒業論文」</span>。10年後に読み返しても恥ずかしくない1本を残します。
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ===== 学習内容 ===== -->
     <section class="mb-60">
 
       <h2 class="heading-primary">ゼミで学習すること</h2>
-
 
       <div class="content-card full-width">
 
         <h3 class="heading-secondary">輪読</h3>
         <p>
-          3回生春学期は仮説構築のための理論の学習と、仮説検証のための統計分析手法の習得のため、テキストの輪読を行います。
-          2026年度のゼミでは、受講生の希望により、以下の三冊を輪読していきます。2027年度では、「実証会計・ファイナンス」に集中しようかと思ってます。このテキストを1冊やりきることで、企業を分析するための知識を身につけることができます。
+          3回生春学期は、仮説構築のための理論の学習と、仮説検証のための統計分析手法の習得のため、テキストの輪読を行います。
+          担当者が内容をまとめて報告し、分からないところは全員で潰していく形式なので、
+          「一人では最後まで読めない本」を読み切れるのが輪読の良いところです。
         </p>
         <p>
-          <ul class="styled-list">
-            <li><span class="marker marker-pink">笠原・村宮 (2022)「実証会計・ファイナンス」新世社</span></li>
-            <li><span class="marker marker-yellow">田頭 (2025)「マーケティング・データ分析」有斐閣</span></li>
-            <li><span class="marker marker-yellow">ベイリー (2025)「社会科学のための統計分析入門 上」勁草書房</span></li>
-          </ul>
-        </p> 
+          2026年度のゼミでは、受講生の希望により、以下の三冊を輪読していきます。
+          2027年度は「実証会計・ファイナンス」1冊に集中する予定です。このテキストをやりきることで、企業を分析するための知識が一通り身につきます。
+        </p>
+        <ul class="styled-list">
+          <li><span class="marker marker-pink">笠原・村宮 (2022)「実証会計・ファイナンス」新世社</span></li>
+          <li><span class="marker marker-yellow">田頭 (2025)「マーケティング・データ分析」有斐閣</span></li>
+          <li><span class="marker marker-yellow">ベイリー (2025)「社会科学のための統計分析入門 上」勁草書房</span></li>
+        </ul>
 
-        <h3 class="heading-secondary">日経STOCKリーグ</h3>
+        <h3 class="heading-secondary">教科書で扱う内容</h3>
         <p>
-          3回生ゼミで1年間にわたって日経STOCKリーグにとり組みます。
-          日経STOCKリーグでは、上場企業4000社弱の中から投資先企業20社以内を選び、企業分析レポートを作成します。その20社の選定理由のユニークさや、株式投資を通じて社会に貢献するといった視点、実際にそのポートフォリオで投資が成功するのかといった収益性を考えて、投資先企業を選びます。
+          <span class="marker marker-yellow">2026年度 笠原・村宮 (2022)「実証会計・ファイナンス」新世社(予定)</span>
+          を使って、次のような内容を学習します。読んで終わりではなく、実際にこれらの道具を使ってデータ分析ができるようになることを目指します。
         </p>
-        <p>
-          実際に株式投資を行うわけではありませんが、仮想の資金を使ってポートフォリオを構築し、運用成績も競います。
-        </p> 
-        <p>
-          日経STOCKリーグについては、以下の公式サイトを見てください。<br>
-          <a href="https://manabow.com/sl/" target="_blank" rel="noopener noreferrer" class="btn-red">日経STOCKリーグ</a>
-        </p>
-        <p>
-          中学生の部、高校生の部、大学生の部があり、それぞれの優秀レポートも掲載されているので、ゼミでどんなことをするのかの参考にしてください。
-        </p>
-
-        <h3 class="heading-secondary">教科書</h3>
-
-        <span class="marker marker-yellow">2026年度 笠原・村宮 (2022)「実証会計・ファイナンス」新世社(予定)</span>
-        を使って，次のような内容を学習する予定です。実際に以下のような道具を使ってデータ分析を行うことができるようになることを目指します。
 
         <h3 class="heading-secondary">財務会計</h3>
-        財務会計の基礎的な知識と財務分析と企業価値評価モデルの基礎を学びます。例えば次のような内容が含まれます。
-          <ul class="styled-list">
-            <li>(連結)貸借対照表，(連結)損益計算書，(連結)キャッシュ・フロー計算書</li>
-            <li>財務分析として安全性，成長性，収益性の指標</li>
-            <li>企業価値評価モデルとして配当割引モデル，DCF，残余利益モデル，例えば以下のようなモデルをつかって企業価値評価を行う道具を学びます。</li>
-              \[
-                \begin{align*}
-                 V_0 = BVE_0 + \sum_{t=1}^{\infty} \frac{NI_t - r_e \times BVE_{t-1}}{(1 + r_e)^t} \\
-                \end{align*}
-              \]
-          </ul>
+        <p>
+          財務会計の基礎知識から、財務分析、そして企業価値評価モデルまでを学びます。
+          「この会社の株価は高すぎるのか、安すぎるのか」を自分で計算できるようになる、というのがこのパートの目標です。
+        </p>
+        <ul class="styled-list">
+          <li>(連結)貸借対照表，(連結)損益計算書，(連結)キャッシュ・フロー計算書の読み方</li>
+          <li>財務分析として安全性，成長性，収益性の指標</li>
+          <li>企業価値評価モデルとして配当割引モデル，DCF，残余利益モデル。例えば以下のようなモデルを使って企業価値評価を行う道具を学びます。</li>
+        </ul>
+        \[
+          \begin{align*}
+            V_0 = BVE_0 + \sum_{t=1}^{\infty} \frac{NI_t - r_e \times BVE_{t-1}}{(1 + r_e)^t} \\
+          \end{align*}
+        \]
+        <p class="math-note">
+          <strong>この式が言っていること：</strong>
+          会社の価値は「いま持っている純資産」＋「これから投資家の期待を超えて稼ぐ利益の積み上げ」。
+          難しそうに見えますが、使うのは四則演算です。Excelでも、Rなら数行で計算できます。
+        </p>
 
         <h3 class="heading-secondary">ファイナンス</h3>
-        ファイナンスの中でも投資論を中心に学びます。
-        ポートフォリオやリターン，ベータといった概念を学びます。
-        例えば次のような内容が含まれます。
-          <ul class="styled-list">
-            <li>投資とリターン，異常リターン</li>
-            たとえば2資産からなるポートフォリオのリターンは以下のように表されます。
-                \[
-                \begin{align*}
-                R_p &= \omega _1 \left ( \frac{X_{1,1}}{X_{1,0}} -1 \right )  + \omega _2 \left ( \frac{X_{2,1}}{X_{2,0}} -1 \right ) \nonumber \\
-                &= \omega _1 R_1 + \omega _2 R_2
-                \end{align*}
-                \]
-            <li>リターンの分散はこう。</li>
-              \[
-              \begin{aligned}
-                \sigma^2_p & \equiv \mathbb{E} [(R_p - \mu_p )^2]\\
-                &= w_1^2 \sigma _1^2 + w_2^2 \sigma^2_2 + 2 w_1 w_2 \sigma _{12}
-              \end{aligned}
-              \]
+        <p>
+          ファイナンスの中でも投資論を中心に学びます。
+          ポートフォリオ、リターン、リスク、ベータといった概念を、言葉のイメージではなく数式で正確に扱えるようにしていきます。
+        </p>
+        <ul class="styled-list">
+          <li>投資とリターン，異常リターン</li>
+        </ul>
+        <p>たとえば2資産からなるポートフォリオのリターンは以下のように表されます。</p>
+        \[
+        \begin{align*}
+        R_p &= \omega _1 \left ( \frac{X_{1,1}}{X_{1,0}} -1 \right )  + \omega _2 \left ( \frac{X_{2,1}}{X_{2,0}} -1 \right ) \nonumber \\
+        &= \omega _1 R_1 + \omega _2 R_2
+        \end{align*}
+        \]
+        <p class="math-note">
+          <strong>この式が言っていること：</strong>
+          2社の株を半分ずつ持ったら、儲けは2社の平均になる、というだけの話です。
+        </p>
 
-            こんな風に、株式投資のリターンやリスクを数式で表現しながら、最適な投資戦略を考えるようになることを目指します。
-            その中で、実用的な資産価格モデルとして、CAPMやFama & Frenchの3ファクターモデルを学びます。
-            <li>CAPMとFama & Frenchの3ファクターモデル</li>
-            \[
-            (\mu_i - r_f) = \frac{\mathbb{Cov}(R_i, R_M)}{\sigma ^2_M} (\mu_M - r_f)
-            \]
+        <p>一方で、リターンの「ばらつき（リスク）」はこうなります。</p>
+        \[
+        \begin{aligned}
+          \sigma^2_p & \equiv \mathbb{E} [(R_p - \mu_p )^2]\\
+          &= w_1^2 \sigma _1^2 + w_2^2 \sigma^2_2 + 2 w_1 w_2 \sigma _{12}
+        \end{aligned}
+        \]
+        <p class="math-note">
+          <strong>この式が言っていること：</strong>
+          リスクは平均にはなりません。最後の共分散の項がマイナスに働くと、
+          組み合わせただけで全体のリスクが下がります。
+          <span class="marker marker-blue">「分散投資したほうがいい」が本当である理由</span>が、この1行で説明できてしまいます。
+        </p>
 
-            \[
-            r_i - r_f = \alpha_i + \beta_{MKT} (r_M - r_f) + \beta_{SMB} SMB + \beta_{HML} HML + \epsilon_i
-            \]
-          </ul>
+        <p>
+          こんな風に、株式投資のリターンやリスクを数式で表現しながら、最適な投資戦略を考えられるようになることを目指します。
+          その上で、実務でも使われる資産価格モデルとして、CAPMとFama &amp; Frenchの3ファクターモデルを学びます。
+        </p>
+        <ul class="styled-list">
+          <li>CAPMとFama &amp; Frenchの3ファクターモデル</li>
+        </ul>
+        \[
+        (\mu_i - r_f) = \frac{\mathbb{Cov}(R_i, R_M)}{\sigma ^2_M} (\mu_M - r_f)
+        \]
 
-        <h3 class="heading-secondary">学外との連携</h3>
-          <ul class="styled-list">
-            <li>日経STOCKリーグを通じた神戸大学、龍谷大学、桃山学院大学、名古屋市立大学との交流企画</li>
-            <li>ネスレ日本主催の伊藤忠商事、アイル、神戸市との社会課題解決型の合同プロジェクト</li>
-            <li>Bloombergと大阪府・大阪市との金融機関の課題解決型の合同プロジェクトKansai Code Crunch</li>
-          </ul>
+        \[
+        r_i - r_f = \alpha_i + \beta_{MKT} (r_M - r_f) + \beta_{SMB} SMB + \beta_{HML} HML + \epsilon_i
+        \]
+        <p class="math-note">
+          <strong>この式が言っていること：</strong>
+          市場全体と一緒に大きく動く株ほど、高いリターンが期待される（それが\(\beta\)）。
+          そして\(\beta\)だけでは説明しきれない部分を、会社の規模（SMB）と割安さ（HML）で補うのが3ファクターモデルです。
+          ここまで来ると、<span class="marker marker-yellow">「この投資成績は、運か実力か」</span>を数字で切り分けられるようになります。
+        </p>
+
+        <h3 class="heading-secondary">データ分析とプログラミング</h3>
+        <p>
+          理論を学ぶだけでは、実際のデータは1行も動きません。
+          ゼミでは分析のための道具として、以下を使います。いずれも無料で、卒業後もそのまま使えます。
+        </p>
+        <ul class="styled-list">
+          <li><strong>R</strong>：データの整理から統計分析、グラフ作成まで。数千社×数十年のデータでも平気で扱えます。</li>
+          <li><strong>Quarto</strong>：分析結果とレポートを一体で管理。数字が変わっても、表やグラフの貼り直しは不要になります。</li>
+          <li><strong>GitHub</strong>：「最終版_修正版_ほんとの最終版.docx」から卒業するための、ファイルの履歴管理。</li>
+        </ul>
+        <p>
+          Rをなぜ使うのか、Excelと何が違うのか、実際にどんなコードを書くのかは、
+          プレゼミのページでブラウザ上から試せます。
+        </p>
+        <p>
+          <a href="presemi2024.html" class="btn-red">Rを体験してみる（プレゼミのページ）</a>
+        </p>
+
       </div>
     </section>
 
+    <!-- ===== 日経STOCKリーグ ===== -->
+    <h2 class="heading-primary">日経STOCKリーグ ― 秋学期のメインイベント</h2>
+
+    <div class="content-card full-width mb-60">
+      <p>
+        3回生ゼミでは、1年間にわたって日経STOCKリーグに取り組みます。
+        <span class="marker marker-yellow">上場企業4000社弱の中から投資先企業を20社以内に絞り込み、企業分析レポートを作成する</span>コンテストです。
+      </p>
+      <p>
+        評価されるのは、20社の選定理由のユニークさ、株式投資を通じて社会に貢献するという視点、
+        そして実際にそのポートフォリオで投資が成功するのかという収益性。
+        「なんとなく有名だから」では1社も選べません。テーマを決め、スクリーニングの基準を作り、数字で裏を取っていく作業になります。
+      </p>
+      <p>
+        実際に株式投資を行うわけではありませんが、仮想の資金でポートフォリオを構築し、運用成績も競います。
+        自分たちが選んだ20社の株価が毎日動くので、授業というより<span class="marker marker-pink">試合に近い感覚</span>です。
+      </p>
+
+      <h3 class="heading-secondary">ここで身につくこと</h3>
+      <ul class="styled-list">
+        <li>チームで役割を分けて、締切のある成果物を仕上げる経験</li>
+        <li>4000社を絞り込むための、スクリーニング基準の設計</li>
+        <li>自分の主張をデータと図表で支える、レポートの書き方</li>
+        <li>就職活動で「学生時代に力を入れたこと」として具体的に話せる題材</li>
+      </ul>
+
+      <h3 class="heading-secondary">まずは過去の受賞レポートを見てください</h3>
+      <p>
+        中学生の部、高校生の部、大学生の部があり、それぞれの優秀レポートが公開されています。
+        ゼミでどんなことをするのかを一番つかみやすいので、入ゼミを迷っている人はぜひ目を通してみてください。
+      </p>
+      <p>
+        <a href="https://manabow.com/sl/" target="_blank" rel="noopener noreferrer" class="btn-red">日経STOCKリーグ 公式サイト</a>
+      </p>
+    </div>
+
+    <!-- ===== 学外連携 ===== -->
+    <h2 class="heading-primary">教室の外に出る</h2>
+
+    <div class="content-card full-width mb-60">
+      <h3 class="heading-secondary">学外との連携プロジェクト</h3>
+      <ul class="styled-list">
+        <li>日経STOCKリーグを通じた神戸大学、龍谷大学、桃山学院大学、名古屋市立大学との交流企画</li>
+        <li>ネスレ日本主催の伊藤忠商事、アイル、神戸市との社会課題解決型の合同プロジェクト</li>
+        <li>Bloombergと大阪府・大阪市との金融機関の課題解決型の合同プロジェクト Kansai Code Crunch</li>
+      </ul>
+      <p class="note-text">
+        同じテーマに他大学の学生がどう取り組むかを見られるのは、交流企画の一番おいしいところです。
+      </p>
+
+      <h3 class="heading-secondary">そのほかの活動</h3>
+      <p>
+        毎週の演習だけでなく、学生の希望があれば、合宿・工場見学・他大学との研究交流・OB/OGとの交流も行っています。
+        「やりたい」と言い出した人がいれば動く、というスタンスです。
+      </p>
+    </div>
+
+    <!-- ===== 身につくもの ===== -->
+    <h2 class="heading-primary">卒業までに身につくもの</h2>
+
+    <div class="grid-2-col mb-60">
+      <div class="content-card">
+        <h3 class="heading-secondary">スキル</h3>
+        <ul class="tag-list">
+          <li>R / tidyverse</li>
+          <li>ggplot2でのグラフ作成</li>
+          <li>回帰分析</li>
+          <li>仮説検定</li>
+          <li>Quarto</li>
+          <li>GitHub</li>
+          <li>財務諸表の読解</li>
+          <li>財務分析</li>
+          <li>企業価値評価</li>
+          <li>ポートフォリオ理論</li>
+          <li>CAPM / 3ファクターモデル</li>
+          <li>学術論文の読み方</li>
+          <li>レポート・論文の書き方</li>
+          <li>プレゼンテーション</li>
+          <li>チームでの共同作業</li>
+        </ul>
+      </div>
+
+      <div class="content-card">
+        <h3 class="heading-secondary">卒業後の進路</h3>
+        <p>
+          メーカー、金融、IT、監査法人・税理士法人、公務員、そして大学院進学と、進路は幅広く分かれています。
+          データで考える習慣は、どの業界に行っても効きます。
+        </p>
+        <p>
+          具体的な就職先や大学院の進学先は、メンバー紹介のページに掲載しています。
+        </p>
+        <p>
+          <a href="member.html" class="btn-red">就職・進学実績を見る</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== FAQ ===== -->
+    <h2 class="heading-primary">よくある質問</h2>
+
+    <div class="mb-60">
+      <details class="faq-item">
+        <summary>Q. 数学や統計が苦手でも大丈夫ですか？</summary>
+        <p class="faq-body">
+          大丈夫です。このページに数式を並べているのは「ここまでやります」という予告であって、
+          入ってくる時点で読める必要はまったくありません。ゼミでは数式の意味を日本語で説明してから使います。
+          必要なのは、\(\sum\) を見て逃げ出さない度胸くらいです。
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Q. プログラミングは未経験です。ついていけますか？</summary>
+        <p class="faq-body">
+          ほとんどのゼミ生が未経験からのスタートです。春学期はRのインストールから始めます。
+          秋学期のプレゼミを受けておけば、専門演習が始まる前にRに慣れておくこともできます。
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Q. 簿記や会計の知識、株の投資経験は必要ですか？</summary>
+        <p class="faq-body">
+          どれも不要です。財務諸表の読み方は輪読で一から扱います。日経STOCKリーグも仮想資金なので、
+          自己資金はまったく必要ありません。簿記を勉強している人は、輪読が少し楽になる、という程度の差です。
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Q. 正直、しんどいですか？</summary>
+        <p class="faq-body">
+          楽ではありません。毎週の報告準備があり、秋学期はチームでレポートを仕上げる必要があります。
+          ただ、終わったときに手元に残るもの（分析できるスキルと、自分の名前の入ったレポート・卒業論文）は、
+          かけた時間に見合うものになります。
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Q. 会計・ファイナンス以外のテーマでも卒業論文は書けますか？</summary>
+        <p class="faq-body">
+          書けます。経営学・会計学に関連する事象であれば、マーケティングや人的資源管理などのテーマも扱えます。
+          大事なのはテーマの分野より、「理論から仮説を立て、データで検証できる形になっているか」です。
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Q. 使うパソコンは？</summary>
+        <p class="faq-body">
+          WindowsでもMacでも構いません。R・Quarto・GitHubはすべて無料で、どちらでも同じように使えます。
+        </p>
+      </details>
+    </div>
+
+    <!-- ===== 活動記録 ===== -->
     <h2 class="heading-primary">活動記録</h2>
 
-    <div class="grid-2-col">
+    <div class="grid-2-col mb-60">
 
       <div class="content-card">
         <h3 class="heading-secondary">輪読した教科書</h3>
@@ -161,6 +457,22 @@
 
     </div>
 
+    <!-- ===== CTA ===== -->
+    <div class="cta-buttons">
+      <a href="presemi2024.html" class="btn-link">
+        <span class="btn-title">まずRを触ってみる</span>
+        <span class="btn-desc">プレゼミのページへ</span>
+        <span class="btn-arrow">→</span>
+      </a>
+      <a href="member.html" class="btn-link">
+        <span class="btn-title">誰がいるのか知る</span>
+        <span class="btn-desc">メンバー紹介へ</span>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+    <p class="note-text">※ 掲載している内容・使用テキストは予定です。年度により変更されることがあります。</p>
+
   </main>
 
   <footer class="site-footer">
@@ -170,3 +482,4 @@
   </footer>
 
 </body>
+</html>
