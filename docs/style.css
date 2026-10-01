@@ -225,10 +225,6 @@ a:hover { opacity: 0.7; }
   .sidebar { padding: 0; border: none; background: transparent; }
 }
 
-/* スマホでは2列グリッドを1列に戻す */
-  .grid-2-col {
-    grid-template-columns: 1fr;
-  }
 
 /* =========================================
    Activity & Member ページ用追加スタイル
@@ -456,4 +452,190 @@ a:hover { opacity: 0.7; }
   transform: translateY(-2px);           /* ふわっと浮き上がる */
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   opacity: 1;                            /* 既存のaタグの薄くなる設定を無効化 */
+}
+
+/* =========================================
+   勉強内容(activity)ページ用の追加パーツ
+   ========================================= */
+
+/* リード文（ページ冒頭のつかみ） */
+.lead-box {
+  background: #fff;
+  border: 1px solid #eee;
+  border-left: 6px solid var(--main-color);
+  border-radius: 4px;
+  padding: 25px 30px;
+  margin-bottom: 50px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+.lead-box p { margin: 0 0 12px; }
+.lead-box p:last-child { margin-bottom: 0; }
+.lead-box .catch {
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--main-color);
+}
+
+/* 3つのポイントカード */
+.point-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+.point-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-top: 4px solid var(--main-color);
+  border-radius: 4px;
+  padding: 22px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+.point-card .point-num {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-color);
+  margin-bottom: 6px;
+}
+.point-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+.point-card p { margin: 0; font-size: 0.95rem; }
+
+/* 研究テーマ例のカード */
+.q-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.q-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-left: 4px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 16px 20px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.q-card .q-mark {
+  color: var(--accent-color);
+  font-weight: 700;
+  margin-right: 6px;
+}
+.q-card .q-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #666;
+}
+
+/* 4セメスターのロードマップ */
+.roadmap {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+.roadmap > li {
+  position: relative;
+  padding: 0 0 30px 30px;
+  border-left: 2px solid #e8d6d6;
+}
+.roadmap > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.roadmap > li::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--main-color);
+  border: 3px solid var(--bg-color);
+}
+.roadmap .term {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-right: 10px;
+}
+.roadmap .term-title { font-weight: 700; font-size: 1.1rem; }
+.roadmap p { margin: 6px 0 0; font-size: 0.95rem; }
+
+/* 身につくスキルのタグ */
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+.tag-list li {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--main-color);
+  background: #fdf4f4;
+  border: 1px solid #e8d6d6;
+  border-radius: 50px;
+  padding: 5px 14px;
+}
+
+/* 数式のかみくだき説明 */
+.math-note {
+  background: #f8f8f8;
+  border-left: 3px solid #ccc;
+  padding: 10px 16px;
+  margin: 10px 0 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.math-note strong { color: var(--main-color); }
+
+/* よくある質問 (details/summary) */
+.faq-item {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+.faq-item > summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--main-color);
+  list-style: none;
+  position: relative;
+  padding-right: 45px;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after {
+  content: "+";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.faq-item[open] > summary::after { content: "–"; }
+.faq-item > summary:hover { background: #fdf4f4; }
+.faq-item .faq-body {
+  padding: 0 20px 18px;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  /* 2カラムグリッドはスマホでは1列に戻す */
+  .grid-2-col { grid-template-columns: 1fr; gap: 25px; }
+  .lead-box { padding: 20px; }
 }
